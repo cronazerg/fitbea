@@ -1,0 +1,32 @@
+version: "3.0"
+services:
+  spark-server:
+    ports:
+      - "8000:8000"
+    environment:
+      - NODE_ENV=production
+      - PORT=8000
+      - DB_HOST=3307:3306
+      - DB_USER=root
+      - DB_NAME=fitness
+      - DB_PASS=marcinek123
+    image: spark/server
+    restart: unless-stopped
+    user: root
+    container_name: spark-server
+    volumes:
+      - ./server:/usr/src/app
+    depends_on:
+      - spark-db
+  spark-db:
+    image: mysql:8
+    environment:
+      MYSQL_HOST: localhost
+      MYSQL_DATABASE: fitness
+      MYSQL_PASSWORD: marcinek123
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+    volumes:
+      - /var/lib/fitness
+    restart: unless-stopped

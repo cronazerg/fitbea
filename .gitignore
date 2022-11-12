@@ -1,3 +1,18 @@
-backend/node_modules
-frontend/node_modules
+# dependencies
+/frontend/node_modules
+/frontend/package.json
+
+/backend/node_modules
+/backend/package.json
+
+# testing
+
+# production
+
+# misc
 # .env
+
+/.idea
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

@@ -1,13 +1,14 @@
 const db = require('../config/db');
 
 class User {
-  constructor(role, name, last_name, phone, email, password) {
-    this.role = role;
+  constructor( name, last_name, phone, email, password, role_idrole) {
     this.name = name;
     this.last_name = last_name;
     this.phone = phone;
     this.email = email;
     this.password = password;
+    this.created_by = this.name + ' ' + this.last_name;
+    this.role_idrole = role_idrole;
   }
 
   save() {
@@ -20,22 +21,24 @@ class User {
 
     let sql = `
             INSERT INTO user (
-                role, 
                 name, 
                 last_name, 
                 phone,
                 email,
                 created_at,
-                password
+                password,
+                created_by,
+                role_idrole
             )
             VALUES (
-                '${this.role}',
                 '${this.name}',
                 '${this.last_name}',
                 '${this.phone}',
                 '${this.email}',
                 '${cratedAtDate}',
-                '${this.password}'
+                '${this.password}',
+                '${this.created_by}',
+                '${this.role_idrole}'
             )
         `;
 

@@ -1,4 +1,7 @@
 const db = require('../config/db');
+const sequelize = require('sequelize');
+
+const { DataTypes } = require('sequelize');
 
 class User {
   constructor( name, last_name, phone, email, password) {

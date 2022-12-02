@@ -1,0 +1,1 @@
+const userHasLessonControllers = require('../models/userHasLesson');

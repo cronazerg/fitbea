@@ -2,8 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2dc01532-1f02-472b-b579-488de8ac1c37" name="Changes" comment="change-to-vue">
+      <change afterPath="$PROJECT_DIR$/backend/controllers/featureControllers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/controllers/lessonControllers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/controllers/locationControllers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/controllers/roleControllers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/controllers/roomControllers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/controllers/userHasLessonControllers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/controllers/userHasRoleControllers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/controllers/zoneControllers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/models/Feature.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/models/Lesson.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/models/Location.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/models/Role.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/models/Room.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/models/UserHasLesson.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/models/UserHasRole.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/models/Zone.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/routes/featureRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/routes/lessonRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/routes/locationRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/routes/roleRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/routes/roomRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/routes/userHasLessonRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/routes/userHasRoleRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/routes/zoneRoutes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/controllers/userControllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/controllers/userControllers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/User.js" afterDir="false" />
     </list>
@@ -11,6 +34,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -47,7 +77,7 @@
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/tomas/WebstormProjects/fitbea&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\tomas\\WebstormProjects\\fitbea\\frontend\\node_modules\\typescript\\lib&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\tomas\\projects\\fitbea\\frontend\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -93,6 +123,9 @@
       <workItem from="1668417341786" duration="594000" />
       <workItem from="1668499827252" duration="589000" />
       <workItem from="1668508365374" duration="3685000" />
+      <workItem from="1668860733058" duration="382000" />
+      <workItem from="1669796774965" duration="601000" />
+      <workItem from="1669919303393" duration="5610000" />
     </task>
     <task id="LOCAL-00001" summary="add-more-config-for-project">
       <created>1668252690482</created>

@@ -1,14 +1,13 @@
 const db = require('../config/db');
 
 class User {
-  constructor( name, last_name, phone, email, password, role_idrole) {
+  constructor( name, last_name, phone, email, password) {
     this.name = name;
     this.last_name = last_name;
     this.phone = phone;
     this.email = email;
     this.password = password;
     this.created_by = this.name + ' ' + this.last_name;
-    this.role_idrole = role_idrole;
   }
 
   save() {
@@ -27,8 +26,7 @@ class User {
                 email,
                 created_at,
                 password,
-                created_by,
-                role_idrole
+                created_by
             )
             VALUES (
                 '${this.name}',
@@ -37,8 +35,7 @@ class User {
                 '${this.email}',
                 '${cratedAtDate}',
                 '${this.password}',
-                '${this.created_by}',
-                '${this.role_idrole}'
+                '${this.created_by}'
             )
         `;
 

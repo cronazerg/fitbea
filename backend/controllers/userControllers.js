@@ -13,8 +13,8 @@ exports.getAllUsers = async (req, res, next) => {
 
 exports.createUser = async (req, res, next) => {
   try {
-    let { name, last_name, phone, email, password, role_idrole} = req.body;
-    let user = new User( name, last_name, phone, email, password, role_idrole);
+    let { name, last_name, phone, email, password} = req.body;
+    let user = new User( name, last_name, phone, email, password);
 
     console.log (user)
 

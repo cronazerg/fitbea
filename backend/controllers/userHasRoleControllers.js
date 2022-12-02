@@ -1,0 +1,1 @@
+const userHasRole = require('../models/userHasRole');

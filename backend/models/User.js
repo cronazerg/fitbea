@@ -1,6 +1,7 @@
-const db = require('../config/db');
-const sequelize = require('sequelize');
-const { DataTypes } = require('sequelize');
+const db = require('../config/db.config');
+// const sequelize = require('sequelize');
+// const { DataTypes } = require('sequelize');
+const UserIdEnum = require('../enums/usersId');
 
 class User {
   constructor( name, last_name, phone, email, password) {
@@ -17,8 +18,7 @@ class User {
     let yyyy = d.getFullYear();
     let mm = d.getMonth() + 1;
     let dd = d.getDate();
-
-    let cratedAtDate = `${yyyy}-${mm}-${dd}`;
+    let date = `${yyyy}-${mm}-${dd}`;
 
     let sql = `
       INSERT INTO user (
@@ -29,18 +29,51 @@ class User {
         created_at,
         password,
         created_by
-      )
-      VALUES (
+      ) VALUES (
         '${this.name}',
         '${this.last_name}',
         '${this.phone}',
         '${this.email}',
-        '${cratedAtDate}',
+        '${date}',
         '${this.password}',
         '${this.created_by}'
       )
   `;
 
+    return db.execute(sql);
+  }
+
+  static setUserHasRole(id) {
+    let d = new Date();
+    let yyyy = d.getFullYear();
+    let mm = d.getMonth() + 1;
+    let dd = d.getDate();
+    let date = `${yyyy}-${mm}-${dd}`;
+
+    let sql = `
+      INSERT INTO user_has_role (
+        user_iduser, 
+        role_idrole, 
+        change_date, 
+        edit_by
+      ) VALUES (
+        ${id}, 
+        ${UserIdEnum.member},
+        '${date}', 
+        ${id}
+      )
+    `;
+
+    return db.execute(sql);
+  }
+
+  static findUserIdByEmail(email) {
+    let sql = `SELECT iduser FROM user WHERE email = '${email}';`;
+    return db.execute(sql);
+  }
+
+  static findByEmail(email) {
+    let sql = `SELECT * FROM user WHERE email = '${email}';`;
     return db.execute(sql);
   }
 

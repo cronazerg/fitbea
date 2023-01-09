@@ -1,65 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2dc01532-1f02-472b-b579-488de8ac1c37" name="Changes" comment="changes-to-frontend">
-      <change afterPath="$PROJECT_DIR$/frontend/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/.eslintrc.cjs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Alert.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/Nav.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/helpers/fake-backend.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/helpers/fetch-wrapper.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/helpers/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/router/account.routes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/router/users.routes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/services/loginService.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/services/userService.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/stores/alert.store.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/stores/auth.store.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/stores/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/stores/users.store.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/Home.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/account/Layout.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/account/Login.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/account/Register.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/account/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/users/AddEdit.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/users/Layout.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/users/List.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/users/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/vite.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    <list default="true" id="2dc01532-1f02-472b-b579-488de8ac1c37" name="Changes" comment="changes-to-frontend-02">
+      <change afterPath="$PROJECT_DIR$/backend/config/auth.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/controllers/auth.controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/enums/usersId.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/middleware/cookieJwtAuth.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/config/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/db.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/controllers/userControllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/controllers/userControllers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/controllers/userHasLessonControllers.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/controllers/userHasRoleControllers.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/models/Feature.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/Feature.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/models/Lesson.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/Lesson.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/models/Location.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/Location.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/models/Role.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/Role.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/models/Room.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/Room.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/User.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/models/UserHasLesson.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/models/UserHasRole.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/models/Zone.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/Zone.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/env.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/assets/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/assets/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/assets/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/assets/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/HelloWorld.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/TheWelcome.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/WelcomeItem.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/icons/IconCommunity.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/icons/IconDocumentation.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/icons/IconEcosystem.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/icons/IconSupport.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/icons/IconTooling.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/main.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/stores/counter.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/AboutView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/HomeView.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/tsconfig.config.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/tsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/vite.config.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/userHasLessonRoutes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/userHasRoleRoutes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/userRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/userRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/helpers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/helpers/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/services/loginService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/loginService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/account/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/account/Login.vue" afterDir="false" />
+    </list>
+    <list id="88f3cd71-98da-4106-b821-abc003c1a208" name="Changes by Arek" comment="">
+      <change beforePath="$PROJECT_DIR$/frontend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Nav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Nav.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/stores/auth.store.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/auth.store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Home.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,8 +48,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="Vue Single File Component" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -88,6 +67,14 @@
         <option value="do-not-push-to-master" />
       </list>
     </option>
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/frontend/src/main.js">
+      <ranges>
+        <range start1="2" end1="3" start2="2" end2="3" changelist="88f3cd71-98da-4106-b821-abc003c1a208" />
+        <range start1="4" end1="9" start2="4" end2="4" changelist="2dc01532-1f02-472b-b579-488de8ac1c37" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -107,13 +94,18 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "dart.analysis.tool.window.visible": "false",
-    "last_opened_file_path": "C:/Users/tomas/WebstormProjects/fitbea",
+    "last_opened_file_path": "C:/Users/tomas/WebstormProjects/fitbea/frontend/src/views/account",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "ts.external.directory.path": "C:\\Users\\tomas\\AppData\\Local\\JetBrains\\Toolbox\\apps\\WebStorm\\ch-0\\222.4345.14\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\tomas\WebstormProjects\fitbea\frontend\src\views\account" />
+    </key>
+  </component>
   <component name="RunManager" selected="npm.runExpress">
     <configuration name="runExpress" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/backend/package.json" />
@@ -170,7 +162,19 @@
       <workItem from="1671004824109" duration="822000" />
       <workItem from="1671024680159" duration="1597000" />
       <workItem from="1671050087579" duration="714000" />
-      <workItem from="1671121214877" duration="2994000" />
+      <workItem from="1671121214877" duration="3147000" />
+      <workItem from="1671182523904" duration="65000" />
+      <workItem from="1672663013385" duration="8000" />
+      <workItem from="1672678323977" duration="7675000" />
+      <workItem from="1672729119993" duration="6732000" />
+      <workItem from="1672776978361" duration="785000" />
+      <workItem from="1672818774444" duration="14289000" />
+      <workItem from="1672862961170" duration="5344000" />
+      <workItem from="1672902404256" duration="85000" />
+      <workItem from="1672902503757" duration="16595000" />
+      <workItem from="1673185599681" duration="1793000" />
+      <workItem from="1673257481442" duration="5519000" />
+      <workItem from="1673281656520" duration="7869000" />
     </task>
     <task id="LOCAL-00001" summary="add-more-config-for-project">
       <created>1668252690482</created>
@@ -207,7 +211,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670091206272</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="changes-to-frontend">
+      <created>1671124397088</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1671124397088</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,6 +242,7 @@
     <MESSAGE value="add-all-controllers" />
     <MESSAGE value="add-all-controllers-01" />
     <MESSAGE value="changes-to-frontend" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes-to-frontend" />
+    <MESSAGE value="changes-to-frontend-02" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes-to-frontend-02" />
   </component>
 </project>

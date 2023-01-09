@@ -16,7 +16,7 @@
   - routes
     - user.js
   - utils
-    - db.js
+    - db.config.js
   - app.js
   - index.js
   - package.json

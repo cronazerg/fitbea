@@ -1,17 +1,22 @@
 require("dotenv").config(); // ALLOWS ENVIRONMENT VARIABLES TO BE SET ON PROCESS.ENV SHOULD BE AT TOP
 
 const express = require("express");
+const cookieParser = require('cookie-parser')
 const cors = require("cors");
 const session = require("express-session");
 const app = express();
 
+// MIDDLEWARE
+app.use(express.json());
+app.use(cors());
+app.use(cookieParser());
+
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
-      secure: true,
-      maxAge: 1800000
+      maxAge: 6000000000
     }
 }));
 
@@ -24,16 +29,8 @@ app.use(cors({
 // Middleware
 app.use(express.json()); // parse json bodies in the request object
 
-
-
 // Routes for Users
 app.use("/users", require("./routes/userRoutes"));
-
-// Routes for UserHasRole
-app.use("/userhasrole", require("./routes/userHasRoleRoutes"));
-
-// Routes for UserHasLesson
-app.use("/userhaslesson", require("./routes/userHasLessonRoutes"));
 
 // Routes for location
 app.use("/location", require("./routes/locationRoutes"));
@@ -56,17 +53,8 @@ app.use("/feature", require("./routes/featureRoutes"));
 
 // Global Error Handler. IMPORTANT function params MUST start with err
 app.use((err, req, res, _next) => {
-  err.code = undefined;
-  err.name = undefined;
-  err.stack = undefined;
-
-  console.log(err.stack);
-  console.log(err.name);
-  console.log(err.code);
-
-  res.status(500).json({
-    message: "Something went rely wrong",
-  });
+  console.log(err);
+  res.status(500).json({ message: err.message });
 });
 
 // Listen on pc port

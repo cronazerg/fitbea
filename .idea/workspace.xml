@@ -1,36 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2dc01532-1f02-472b-b579-488de8ac1c37" name="Changes" comment="changes-to-frontend-02">
-      <change afterPath="$PROJECT_DIR$/backend/config/auth.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/controllers/auth.controller.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/enums/usersId.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/middleware/cookieJwtAuth.js" afterDir="false" />
+    <list default="true" id="2dc01532-1f02-472b-b579-488de8ac1c37" name="Changes" comment="changes-to-frontend-03">
+      <change afterPath="$PROJECT_DIR$/frontend/src/stores/register.store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/backend/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/config/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/db.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/controllers/userControllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/controllers/userControllers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/controllers/userHasLessonControllers.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/controllers/userHasRoleControllers.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/models/Feature.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/Feature.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/models/Lesson.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/Lesson.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/models/Location.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/Location.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/models/Role.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/Role.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/models/Room.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/Room.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/User.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/models/UserHasLesson.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/models/UserHasRole.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/models/Zone.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/Zone.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/userHasLessonRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/userHasRoleRoutes.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/userRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/userRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/helpers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/helpers/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/services/loginService.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/services/loginService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/account/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/account/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/services/loginService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/services/userService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/stores/auth.store.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/auth.store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/stores/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/account/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/account/Register.vue" afterDir="false" />
     </list>
     <list id="88f3cd71-98da-4106-b821-abc003c1a208" name="Changes by Arek" comment="">
       <change beforePath="$PROJECT_DIR$/frontend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.env" afterDir="false" />
@@ -69,10 +48,21 @@
     </option>
   </component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/frontend/src/main.js">
+    <file path="$PROJECT_DIR$/frontend/src/stores/auth.store.js">
       <ranges>
-        <range start1="2" end1="3" start2="2" end2="3" changelist="88f3cd71-98da-4106-b821-abc003c1a208" />
-        <range start1="4" end1="9" start2="4" end2="4" changelist="2dc01532-1f02-472b-b579-488de8ac1c37" />
+        <range start1="0" end1="5" start2="0" end2="4" changelist="88f3cd71-98da-4106-b821-abc003c1a208" />
+        <range start1="6" end1="7" start2="5" end2="6" changelist="2dc01532-1f02-472b-b579-488de8ac1c37" />
+        <range start1="8" end1="39" start2="7" end2="47" changelist="88f3cd71-98da-4106-b821-abc003c1a208" />
+        <range start1="41" end1="41" start2="49" end2="50" changelist="88f3cd71-98da-4106-b821-abc003c1a208" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/frontend/src/views/Home.vue">
+      <ranges>
+        <range start1="1" end1="1" start2="1" end2="2" changelist="2dc01532-1f02-472b-b579-488de8ac1c37" />
+        <range start1="2" end1="3" start2="3" end2="3" changelist="88f3cd71-98da-4106-b821-abc003c1a208" />
+        <range start1="7" end1="7" start2="7" end2="8" changelist="2dc01532-1f02-472b-b579-488de8ac1c37" />
+        <range start1="10" end1="12" start2="11" end2="13" changelist="2dc01532-1f02-472b-b579-488de8ac1c37" />
+        <range start1="14" end1="14" start2="15" end2="16" changelist="2dc01532-1f02-472b-b579-488de8ac1c37" />
       </ranges>
     </file>
   </component>
@@ -87,26 +77,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "dart.analysis.tool.window.visible": "false",
-    "last_opened_file_path": "C:/Users/tomas/WebstormProjects/fitbea/frontend/src/views/account",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "ts.external.directory.path": "C:\\Users\\tomas\\AppData\\Local\\JetBrains\\Toolbox\\apps\\WebStorm\\ch-0\\222.4345.14\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/tomas/WebstormProjects/fitbea/frontend/src/views/account&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\tomas\\AppData\\Local\\JetBrains\\Toolbox\\apps\\WebStorm\\ch-0\\222.4345.14\\plugins\\JavaScriptLanguage\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\tomas\WebstormProjects\fitbea\frontend\src\views\account" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.runExpress">
+  <component name="RunManager" selected="npm.runVue">
     <configuration name="runExpress" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/backend/package.json" />
       <command value="run" />
@@ -174,7 +164,13 @@
       <workItem from="1672902503757" duration="16595000" />
       <workItem from="1673185599681" duration="1793000" />
       <workItem from="1673257481442" duration="5519000" />
-      <workItem from="1673281656520" duration="7869000" />
+      <workItem from="1673281656520" duration="8556000" />
+      <workItem from="1673331060555" duration="1488000" />
+      <workItem from="1673332743442" duration="45000" />
+      <workItem from="1673332826932" duration="817000" />
+      <workItem from="1673333887281" duration="5351000" />
+      <workItem from="1673353263629" duration="4349000" />
+      <workItem from="1673358576900" duration="53000" />
     </task>
     <task id="LOCAL-00001" summary="add-more-config-for-project">
       <created>1668252690482</created>
@@ -218,7 +214,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671124397088</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="changes-to-frontend-02-fix">
+      <created>1673294530819</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1673294530819</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,6 +246,8 @@
     <MESSAGE value="add-all-controllers-01" />
     <MESSAGE value="changes-to-frontend" />
     <MESSAGE value="changes-to-frontend-02" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes-to-frontend-02" />
+    <MESSAGE value="changes-to-frontend-02-fix" />
+    <MESSAGE value="changes-to-frontend-03" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes-to-frontend-03" />
   </component>
 </project>

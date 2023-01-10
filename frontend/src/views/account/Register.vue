@@ -1,58 +1,91 @@
-<script setup>
-import { Form, Field } from 'vee-validate';
+<script>
 import * as Yup from 'yup';
-
-import { useUsersStore, useAlertStore } from '@/stores';
-import { router } from '@/router';
+// import { useUsersStore, useAlertStore } from '@/stores';
+import { useRegisterStore }  from '@/stores';
 
 const schema = Yup.object().shape({
-    firstName: Yup.string()
-        .required('First Name is required'),
-    lastName: Yup.string()
-        .required('Last Name is required'),
-    username: Yup.string()
-        .required('Username is required'),
-    password: Yup.string()
-        .required('Password is required')
-        .min(6, 'Password must be at least 6 characters')
+  firstName: Yup.string()
+      .required('First Name is required'),
+  lastName: Yup.string()
+      .required('Last Name is required'),
+  username: Yup.string()
+      .required('Username is required'),
+  password: Yup.string()
+      .required('Password is required')
+      .min(6, 'Password must be at least 6 characters')
 });
 
-async function onSubmit(values) {
-    const usersStore = useUsersStore();
-    const alertStore = useAlertStore();
-    try {
-        await usersStore.register(values);
-        await router.push('/account/login');
-        alertStore.success('Registration successful');
-    } catch (error) { 
-        alertStore.error(error);
+
+export default {
+  name: "Register",
+  setup() {
+    const registerStore = useRegisterStore();
+    return {
+      schema,
+      registerStore
+    };
+  },
+
+  data() {
+    return {
+      errors: '',
+      firstName: '',
+      lastName: '',
+      username: '',
+      password: ''
     }
+  },
+
+  methods: {
+    async onSubmit() {
+      try {
+        await this.registerStore.register({
+          firstName: this.firstName,
+          lastName: this.lastName,
+          username: this.email,
+          password: this.password,
+        });
+      } catch (error) {
+        console.log(error);
+        this.error = error;
+        this.firstName = "";
+        this.lastName = "";
+        this.username = "";
+        this.password = "";
+      }
+    }
+  },
+
+  computed: {
+
+  }
 }
+
 </script>
 
 <template>
     <div class="card m-3">
         <h4 class="card-header">Register</h4>
         <div class="card-body">
-            <Form @submit="onSubmit" :validation-schema="schema" v-slot="{ errors, isSubmitting }">
+            <Form @submit.prevent="this.onSubmit">
                 <div class="form-group">
                     <label>First Name</label>
-                    <Field name="firstName" type="text" class="form-control" :class="{ 'is-invalid': errors.firstName }" />
+                    <Field name="firstName" type="text" class="form-control" :class="{ 'is-invalid': errors.firstName }" @input="event => this.firstName = event.target.value"/>
                     <div class="invalid-feedback">{{ errors.firstName }}</div>
                 </div>
                 <div class="form-group">
                     <label>Last Name</label>
-                    <Field name="lastName" type="text" class="form-control" :class="{ 'is-invalid': errors.lastName }" />
+                    <Field name="lastName" type="text" class="form-control" :class="{ 'is-invalid': errors.lastName }" @input="event => this.lastName = event.target.value"/>
                     <div class="invalid-feedback">{{ errors.lastName }}</div>
                 </div>
                 <div class="form-group">
                     <label>Username</label>
-                    <Field name="username" type="text" class="form-control" :class="{ 'is-invalid': errors.username }" />
+                    <Field name="username" type="text" class="form-control" :class="{ 'is-invalid': errors.username }" @input="event => this.username = event.target.value"/>
                     <div class="invalid-feedback">{{ errors.username }}</div>
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <Field name="password" type="password" class="form-control" :class="{ 'is-invalid': errors.password }" />
+                    <Field name="password" type="password" class="form-control" :class="{ 'is-invalid': errors.password }" @input="event => this.password = event.target.value"/>
                     <div class="invalid-feedback">{{ errors.password }}</div>
                 </div>
                 <div class="form-group">

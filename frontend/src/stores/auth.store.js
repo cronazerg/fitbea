@@ -1,40 +1,49 @@
-import { defineStore } from 'pinia';
-
-import { fetchWrapper } from '@/helpers';
-import { router } from '@/router';
-import { useAlertStore } from '@/stores';
+import {defineStore} from 'pinia';
+import {ref} from "vue";
+// import {useAlertStore} from '@/stores';
+import router from "../router";
 
 // const baseUrl = `${import.meta.env.VITE_API_URL}/users`;
 
-export const useAuthStore = defineStore({
-    id: 'auth',
-    state: () => ({
-        // initialize state from local storage to enable user to stay logged in
-        user: JSON.parse(localStorage.getItem('user')),
-        returnUrl: null
-    }),
-    actions: {
-        async login(username, password) {
-            try {
-                const user = await fetchWrapper.post(`${baseUrl}/authenticate`, { username, password });    
+export const useAuthStore = defineStore('auth', () => {
+  const isLogged = ref(false);
+  const authToken = ref(null);
+  const userData = ref(null);
 
-                // update pinia state
-                this.user = user;
-
-                // store user details and jwt in local storage to keep user logged in between page refreshes
-                localStorage.setItem('user', JSON.stringify(user));
-
-                // redirect to previous url or default to home page
-                router.push(this.returnUrl || '/');
-            } catch (error) {
-                const alertStore = useAlertStore();
-                alertStore.error(error);                
-            }
+  const login = async ({username, password}) => {
+    try {
+      await fetch('http://localhost:8000/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          withCredentials: false,
         },
-        logout() {
-            this.user = null;
-            localStorage.removeItem('user');
-            router.push('/account/login');
+        body: JSON.stringify({
+          email: username,
+          password: password
+        }),
+      }).then((response) =>
+        response.json()
+      ).then((data) => {
+        if (data.token) {
+          authToken.value = data.token;
+          userData.value = data.user;
+          isLogged.value = true;
+          router.push({name: 'home'});
         }
+      })
+    } catch (error) {
+      isLogged.value = false;
+      throw new Error(data);
     }
+  }
+
+  const logout = async () => {
+    isLogged.value = false;
+    await router.push({name: "login"});
+  };
+
+  return {isLogged, login, logout, authToken, userData}
 });
+

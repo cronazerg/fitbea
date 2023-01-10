@@ -1,34 +1,42 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory } from "vue-router";
+import Login from "../views/account/Login.vue";
+import Register from "../views/account/Register.vue"
 
-import { useAuthStore, useAlertStore } from '@/stores';
-import { Home } from '@/views';
-import accountRoutes from './account.routes';
-import usersRoutes from './users.routes';
+const routes = [
+    {
+        path: "/account/login",
+        name: "login",
+        component: Login,
+        meta: {
+            title: "Zaloguj się",
+        },
+    },
+    {
+        path: "/account/register",
+        name: "register",
+        component: Register,
+        meta: {
+            title: "Rejestracja",
+        },
+    },
+    {
+        path: "/",
+        name: "home",
+        component: () => import("../views/Home.vue"),
+        meta: {
+            title: "Strona główna",
+        },
+    },
+];
 
-export const router = createRouter({
-    history: createWebHistory(import.meta.env.BASE_URL),
-    linkActiveClass: 'active',
-    routes: [
-        { path: '/', component: Home },
-        { ...accountRoutes },
-        { ...usersRoutes },
-        // catch all redirect to home page
-        { path: '/:pathMatch(.*)*', redirect: '/' }
-    ]
+const router = createRouter({
+    history: createWebHistory(),
+    routes,
 });
 
-router.beforeEach(async (to) => {
-    // clear alert on route change
-    const alertStore = useAlertStore();
-    alertStore.clear();
-
-    // redirect to login page if not logged in and trying to access a restricted page 
-    const publicPages = ['/account/login', '/account/register'];
-    const authRequired = !publicPages.includes(to.path);
-    const authStore = useAuthStore();
-
-    if (authRequired && !authStore.user) {
-        authStore.returnUrl = to.fullPath;
-        return '/account/login';
-    }
+router.beforeEach((to, from, next) => {
+    document.title = "fitbea" + (to.meta.title ? " - " + to.meta.title : "");
+    next();
 });
+
+export default router;

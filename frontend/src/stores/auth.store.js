@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia';
 import {ref} from "vue";
-// import {useAlertStore} from '@/stores';
+import Cookies from "js-cookie";
 import router from "../router";
 
 // const baseUrl = `${import.meta.env.VITE_API_URL}/users`;
@@ -9,6 +9,11 @@ export const useAuthStore = defineStore('auth', () => {
   const isLogged = ref(false);
   const authToken = ref(null);
   const userData = ref(null);
+
+  if (Cookies.get("userData")) {
+    isLogged.value = true;
+    userData.value = JSON.parse(Cookies.get("userData"));
+  }
 
   const login = async ({username, password}) => {
     try {
@@ -30,6 +35,8 @@ export const useAuthStore = defineStore('auth', () => {
           authToken.value = data.token;
           userData.value = data.user;
           isLogged.value = true;
+          Cookies.set("userData", JSON.stringify(userData.value));
+          Cookies.set("Authorization", authToken.value);
           router.push({name: 'home'});
         }
       })

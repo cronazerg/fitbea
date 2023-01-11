@@ -3,8 +3,30 @@
 import { storeToRefs } from 'pinia';
 import { useAuthStore } from '@/stores';
 
-const authStore = useAuthStore();
-const { user } = storeToRefs(authStore);
+export default {
+  name: "Home",
+  setup() {
+    const authStore = useAuthStore();
+    return { authStore }
+  },
+
+  data() {
+    return {
+      userData: null,
+    }
+  },
+
+  computed() {
+  },
+
+  mounted() {
+    // if (this.authStore.isLogged) {
+    //   this.userData = this.authStore.userData;
+    //   console.log(this.userData);
+    // }
+  }
+}
+
 
 </script>
 

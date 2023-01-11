@@ -79,7 +79,7 @@ exports.createUser = async (req, res, next) => {
     res.status(201).json({ message: 'User created successfully', user });
 
   } catch (error) {
-    console.log(error);res.cookie('session', token, { httpOnly: true, sameSite: 'strict' });
+    console.log(error);
     next(error);
   }
 

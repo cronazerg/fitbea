@@ -1,6 +1,5 @@
-<script setup>
+<script>
 
-import { storeToRefs } from 'pinia';
 import { useAuthStore } from '@/stores';
 
 export default {
@@ -32,9 +31,9 @@ export default {
 
 <template>
     <div>
-        <h1 v-if="user">Hi {{user.firstName}}!</h1>
+        <h1 v-if="authStore.isLogged"> Hi {{  authStore.userData.name }} !</h1>
         <p>You're logged in with Vue 3 + Pinia & JWT!!</p>
         <p><router-link to="/users">Manage Users</router-link></p>
-        <p><router-link to="/account/login">Zaloguj się</router-link></p>
+        <p v-if="!authStore.isLogged"><router-link to="/account/login">Zaloguj się</router-link></p>
     </div>
 </template>

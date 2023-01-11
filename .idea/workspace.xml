@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2dc01532-1f02-472b-b579-488de8ac1c37" name="Changes" comment="changes-to-frontend-03">
-      <change afterPath="$PROJECT_DIR$/frontend/src/stores/register.store.js" afterDir="false" />
+    <list default="true" id="2dc01532-1f02-472b-b579-488de8ac1c37" name="Changes" comment="changes-to-frontend-03-auth">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/services/loginService.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/services/userService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/controllers/userControllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/controllers/userControllers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/middleware/cookieJwtAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/middleware/cookieJwtAuth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/userRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/userRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/helpers/fake-backend.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/stores/auth.store.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/auth.store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/stores/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/stores/register.store.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/stores/users.store.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/users.store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/account/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/account/Login.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/account/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/account/Register.vue" afterDir="false" />
     </list>
-    <list id="88f3cd71-98da-4106-b821-abc003c1a208" name="Changes by Arek" comment="">
-      <change beforePath="$PROJECT_DIR$/frontend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Nav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Nav.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
+    <list id="88f3cd71-98da-4106-b821-abc003c1a208" name="Changes by Arek" comment="changes-for-login-and-store">
+      <change afterPath="$PROJECT_DIR$/frontend/src/helpers/http.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/helpers/fetch-wrapper.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/helpers/fetch-wrapper.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/stores/auth.store.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/auth.store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Home.vue" afterDir="false" />
     </list>
@@ -50,19 +53,19 @@
   <component name="LineStatusTrackerManager">
     <file path="$PROJECT_DIR$/frontend/src/stores/auth.store.js">
       <ranges>
-        <range start1="0" end1="5" start2="0" end2="4" changelist="88f3cd71-98da-4106-b821-abc003c1a208" />
-        <range start1="6" end1="7" start2="5" end2="6" changelist="2dc01532-1f02-472b-b579-488de8ac1c37" />
-        <range start1="8" end1="39" start2="7" end2="47" changelist="88f3cd71-98da-4106-b821-abc003c1a208" />
-        <range start1="41" end1="41" start2="49" end2="50" changelist="88f3cd71-98da-4106-b821-abc003c1a208" />
+        <range start1="2" end1="3" start2="2" end2="3" changelist="88f3cd71-98da-4106-b821-abc003c1a208" />
+        <range start1="11" end1="11" start2="11" end2="16" changelist="88f3cd71-98da-4106-b821-abc003c1a208" />
+        <range start1="32" end1="32" start2="37" end2="39" changelist="88f3cd71-98da-4106-b821-abc003c1a208" />
+        <range start1="46" end1="47" start2="53" end2="54" changelist="2dc01532-1f02-472b-b579-488de8ac1c37" />
       </ranges>
     </file>
     <file path="$PROJECT_DIR$/frontend/src/views/Home.vue">
       <ranges>
-        <range start1="1" end1="1" start2="1" end2="2" changelist="2dc01532-1f02-472b-b579-488de8ac1c37" />
-        <range start1="2" end1="3" start2="3" end2="3" changelist="88f3cd71-98da-4106-b821-abc003c1a208" />
-        <range start1="7" end1="7" start2="7" end2="8" changelist="2dc01532-1f02-472b-b579-488de8ac1c37" />
-        <range start1="10" end1="12" start2="11" end2="13" changelist="2dc01532-1f02-472b-b579-488de8ac1c37" />
-        <range start1="14" end1="14" start2="15" end2="16" changelist="2dc01532-1f02-472b-b579-488de8ac1c37" />
+        <range start1="0" end1="1" start2="0" end2="1" changelist="2dc01532-1f02-472b-b579-488de8ac1c37" />
+        <range start1="2" end1="3" start2="2" end2="2" changelist="2dc01532-1f02-472b-b579-488de8ac1c37" />
+        <range start1="5" end1="7" start2="4" end2="28" changelist="88f3cd71-98da-4106-b821-abc003c1a208" />
+        <range start1="12" end1="13" start2="33" end2="34" changelist="2dc01532-1f02-472b-b579-488de8ac1c37" />
+        <range start1="15" end1="16" start2="36" end2="37" changelist="2dc01532-1f02-472b-b579-488de8ac1c37" />
       </ranges>
     </file>
   </component>
@@ -96,7 +99,7 @@
       <recent name="C:\Users\tomas\WebstormProjects\fitbea\frontend\src\views\account" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.runVue">
+  <component name="RunManager" selected="npm.runExpress">
     <configuration name="runExpress" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/backend/package.json" />
       <command value="run" />
@@ -170,7 +173,10 @@
       <workItem from="1673332826932" duration="817000" />
       <workItem from="1673333887281" duration="5351000" />
       <workItem from="1673353263629" duration="4349000" />
-      <workItem from="1673358576900" duration="53000" />
+      <workItem from="1673358576900" duration="711000" />
+      <workItem from="1673377000104" duration="5146000" />
+      <workItem from="1673419230140" duration="1806000" />
+      <workItem from="1673459085049" duration="8898000" />
     </task>
     <task id="LOCAL-00001" summary="add-more-config-for-project">
       <created>1668252690482</created>
@@ -221,7 +227,28 @@
       <option name="project" value="LOCAL" />
       <updated>1673294530819</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="changes-to-frontend-03">
+      <created>1673358652260</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1673358652260</updated>
+    </task>
+    <task id="LOCAL-00009" summary="changes-to-frontend-03-auth">
+      <created>1673358661127</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1673358661127</updated>
+    </task>
+    <task id="LOCAL-00010" summary="changes-for-login-and-store">
+      <created>1673358674383</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1673358674383</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,6 +275,8 @@
     <MESSAGE value="changes-to-frontend-02" />
     <MESSAGE value="changes-to-frontend-02-fix" />
     <MESSAGE value="changes-to-frontend-03" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes-to-frontend-03" />
+    <MESSAGE value="changes-to-frontend-03-auth" />
+    <MESSAGE value="changes-for-login-and-store" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes-for-login-and-store" />
   </component>
 </project>

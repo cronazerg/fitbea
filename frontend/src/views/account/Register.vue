@@ -1,7 +1,8 @@
 <script>
+
 import * as Yup from 'yup';
-// import { useUsersStore, useAlertStore } from '@/stores';
-import { useRegisterStore }  from '@/stores';
+import {useUsersStore, useAlertStore} from '@/stores';
+import {storeToRefs} from "pinia";
 
 const schema = Yup.object().shape({
   firstName: Yup.string()
@@ -15,23 +16,23 @@ const schema = Yup.object().shape({
       .min(6, 'Password must be at least 6 characters')
 });
 
-
 export default {
   name: "Register",
   setup() {
-    const registerStore = useRegisterStore();
+    const usersStore = useUsersStore();
     return {
       schema,
-      registerStore
+      usersStore
     };
   },
 
   data() {
     return {
       errors: '',
-      firstName: '',
+      name: '',
       lastName: '',
-      username: '',
+      email: '',
+      phone: '',
       password: ''
     }
   },
@@ -39,24 +40,26 @@ export default {
   methods: {
     async onSubmit() {
       try {
-        await this.registerStore.register({
-          firstName: this.firstName,
+        await this.usersStore.register({
+          name: this.name,
           lastName: this.lastName,
-          username: this.email,
+          email: this.email,
+          phone: this.phone,
           password: this.password,
         });
       } catch (error) {
         console.log(error);
         this.error = error;
-        this.firstName = "";
+        this.name = "";
         this.lastName = "";
-        this.username = "";
+        this.email = "";
+        this.phone = "";
         this.password = "";
       }
     }
   },
 
-  computed: {
+  computed() {
 
   }
 }
@@ -64,38 +67,48 @@ export default {
 </script>
 
 <template>
-    <div class="card m-3">
-        <h4 class="card-header">Register</h4>
-        <div class="card-body">
-            <Form @submit.prevent="this.onSubmit">
-                <div class="form-group">
-                    <label>First Name</label>
-                    <Field name="firstName" type="text" class="form-control" :class="{ 'is-invalid': errors.firstName }" @input="event => this.firstName = event.target.value"/>
-                    <div class="invalid-feedback">{{ errors.firstName }}</div>
-                </div>
-                <div class="form-group">
-                    <label>Last Name</label>
-                    <Field name="lastName" type="text" class="form-control" :class="{ 'is-invalid': errors.lastName }" @input="event => this.lastName = event.target.value"/>
-                    <div class="invalid-feedback">{{ errors.lastName }}</div>
-                </div>
-                <div class="form-group">
-                    <label>Username</label>
-                    <Field name="username" type="text" class="form-control" :class="{ 'is-invalid': errors.username }" @input="event => this.username = event.target.value"/>
-                    <div class="invalid-feedback">{{ errors.username }}</div>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <Field name="password" type="password" class="form-control" :class="{ 'is-invalid': errors.password }" @input="event => this.password = event.target.value"/>
-                    <div class="invalid-feedback">{{ errors.password }}</div>
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary" :disabled="isSubmitting">
-                        <span v-show="isSubmitting" class="spinner-border spinner-border-sm mr-1"></span>
-                        Register
-                    </button>
-                    <router-link to="login" class="btn btn-link">Cancel</router-link>
-                </div>
-            </Form>
+  <div class="card m-3">
+    <h4 class="card-header">Register</h4>
+    <div class="card-body">
+      <Form @submit.prevent="this.onSubmit">
+        <div class="form-group">
+          <label>First Name</label>
+          <input name="name" type="text" class="form-control" :class="{ 'is-invalid': errors.name }"
+                 @input="event => this.name = event.target.value"/>
+          <div class="invalid-feedback">{{ errors.name }}</div>
         </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input name="lastName" type="text" class="form-control" :class="{ 'is-invalid': errors.lastName }"
+                 @input="event => this.lastName = event.target.value"/>
+          <div class="invalid-feedback">{{ errors.lastName }}</div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input name="username" type="text" class="form-control" :class="{ 'is-invalid': errors.email }"
+                 @input="event => this.email = event.target.value"/>
+          <div class="invalid-feedback">{{ errors.username }}</div>
+        </div>
+        <div class="form-group">
+          <label>Telefon</label>
+          <input name="phone" type="text" class="form-control" :class="{ 'is-invalid': errors.password }"
+                 @input="event => this.phone = event.target.value"/>
+          <div class="invalid-feedback">{{ errors.phone }}</div>
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input name="password" type="password" class="form-control" :class="{ 'is-invalid': errors.password }"
+                 @input="event => this.password = event.target.value"/>
+          <div class="invalid-feedback">{{ errors.password }}</div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary" :disabled="isSubmitting">
+            <span v-show="isSubmitting" class="spinner-border spinner-border-sm mr-1"></span>
+            Register
+          </button>
+          <router-link to="login" class="btn btn-link">Cancel</router-link>
+        </div>
+      </Form>
     </div>
+  </div>
 </template>

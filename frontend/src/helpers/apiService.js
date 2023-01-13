@@ -1,11 +1,11 @@
-import { useAuthStore } from '@/stores';
+import {useAuthStore} from '@/stores';
 
-const makeRequest = async (path, { method, body }) => {
+const makeBodyRequest = async (path, { method, body }) => {
   const authStore = useAuthStore();
 
   console.log(JSON.stringify(body));
   if (authStore.user === null) {
-    authStore.logout();
+    await authStore.logout();
     return;
   }
   const response = await fetch(path, {
@@ -19,21 +19,22 @@ const makeRequest = async (path, { method, body }) => {
   if (data.status === "success") {
     return data;
   } else if (data.exception.code === 401) {
-    authStore.logout();
+    await authStore.logout();
   } else {
     throw new Error(data);
   }
 };
 
 function authHeader(url) {
-  const { user } = useAuthStore();
-  const isLoggedIn = !!user?.token;
+  const authStore = useAuthStore();
+
+  const isLoggedIn = !!authStore?.token;
   const isApiUrl = url.startsWith(import.meta.env.VITE_API_URL);
 
   return {
     "Content-Type": "application/json",
-    Authorization: user.token
+    Authorization: authStore?.authToken
   };
 }
 
-export default makeRequest;
+export default {makeBodyRequest};

@@ -14,3 +14,9 @@ const authStore = useAuthStore();
         </div>
     </div>
 </template>
+
+<style>
+.container {
+  max-width: 90vw;
+}
+</style>

@@ -1,51 +1,148 @@
-<script setup>
-import { storeToRefs } from 'pinia';
+<script>
 
-import { useUsersStore } from '@/stores';
+import * as Yup from 'yup';
+import dayjs from 'dayjs';
+import {useUsersStore} from '@/stores';
 
-const usersStore = useUsersStore();
-const { users } = storeToRefs(usersStore);
+export default {
+  name: "List",
+  setup() {
+    const userStore = useUsersStore();
+    return {
+      userStore
+    };
+  },
 
-usersStore.getAll();
+  data() {
+    return {
+      usersData: null,
+      users: [],
+      dayjs: dayjs,
+      errors: '',
+      name: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      edit_by: ''
+    }
+  },
+
+  methods: {
+    writeConsole(data) {
+      console.log(data);
+    },
+
+    async onEdit() {
+      try {
+        await this.usersStore.updateUserDataById(77, {
+          name: this.name,
+          lastName: this.lastName,
+          email: this.email,
+          phone: this.phone,
+          edit_by: this.edit_by,
+        });
+      } catch (error) {
+        console.log(error);
+        this.error = error;
+        this.name = "";
+        this.lastName = "";
+        this.email = "";
+        this.phone = "";
+        this.password = "";
+      }
+    }
+  },
+
+  created() {
+    this.userStore.getAll();
+    this.onEdit()
+  }
+}
+
+
 </script>
 
 <template>
-    <h1>Users</h1>
-    <router-link to="/users/add" class="btn btn-sm btn-success mb-2">Add User</router-link>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th style="width: 30%">First Name</th>
-                <th style="width: 30%">Last Name</th>
-                <th style="width: 30%">Username</th>
-                <th style="width: 10%"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <template v-if="users.length">
-                <tr v-for="user in users" :key="user.id">
-                    <td>{{ user.firstName }}</td>
-                    <td>{{ user.lastName }}</td>
-                    <td>{{ user.username }}</td>
-                    <td style="white-space: nowrap">
-                        <router-link :to="`/users/edit/${user.id}`" class="btn btn-sm btn-primary mr-1">Edit</router-link>
-                        <button @click="usersStore.delete(user.id)" class="btn btn-sm btn-danger btn-delete-user" :disabled="user.isDeleting">
-                            <span v-if="user.isDeleting" class="spinner-border spinner-border-sm"></span>
-                            <span v-else>Delete</span>
-                        </button>
-                    </td>
-                </tr>
-            </template>
-            <tr v-if="users.loading">
-                <td colspan="4" class="text-center">
-                    <span class="spinner-border spinner-border-lg align-center"></span>
-                </td>
-            </tr>
-            <tr v-if="users.error">
-                <td colspan="4">
-                    <div class="text-danger">Error loading users: {{users.error}}</div>
-                </td>
-            </tr>            
-        </tbody>
-    </table>
+  <h1>Users</h1>
+  <router-link to="users/addEdit" class="btn btn-link">addEdit</router-link>
+  <table id="users">
+    <thead>
+    <tr>
+      <th>id</th>
+      <th>id_role</th>
+      <th>created_by</th>
+      <th>name</th>
+      <th>last_name</th>
+      <th>email</th>
+      <th>phone</th>
+      <th>created_at</th>
+      <th>created_by</th>
+      <th>edit_by</th>
+      <th>edit_date</th>
+      <th>Usuń</th>
+      <th>Edytuj</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr v-for="user in userStore.usersData" :key="user.iduser">
+      <td>{{ user.iduser }}</td>
+      <td>{{ user.role_idrole }}</td>
+      <td>{{ user.created_by }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.last_name }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.phone }}</td>
+      <td>{{ dayjs(user.created_at).format('YYYY-MM-DD') }}</td>
+      <td>{{ user.created_by }}</td>
+      <td>{{ user.edit_by }}</td>
+      <td>{{ dayjs(user.edit_date).format('YYYY-MM-DD') }}</td>
+      <td><button @click=this.userStore.deleteUser(user.iduser)>Usuń</button></td>
+      <td><button @click=''>Edytuj</button></td>
+    </tr>
+    </tbody>
+  </table>
+
 </template>
+
+<style>
+#users {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#users td, #users th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#users td button {
+  background-color: #04AA6D;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+#users td button:hover {
+  color: #333;
+  background-color: #f2f2f2;
+}
+
+#users tr:nth-child(even){
+  background-color: #f2f2f2;
+}
+
+#users tr:hover {background-color: #ddd;}
+
+#users th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
+</style>

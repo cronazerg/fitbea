@@ -14,10 +14,13 @@ router.route('/login')
 
 router.route("/:id")
     .get(userControllers.getSingleUser)
-    .delete(userControllers.deleteUser);
+    .delete(cookieJwtAuth, userControllers.deleteUser);
 
 router.route("/role/:id")
     .put(userControllers.updateUserRole)
+
+router.route("/userData/:id")
+  .put(userControllers.updateUserDataById)
 
 router.route("/pass/:id")
     .put(userControllers.updateUserPass)

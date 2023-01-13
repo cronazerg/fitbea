@@ -4,13 +4,14 @@ const db = require('../config/db.config');
 const UserIdEnum = require('../enums/usersId');
 
 class User {
-  constructor( name, last_name, phone, email, password) {
+  constructor(name, last_name, phone, email, password, edit_by) {
     this.name = name;
     this.last_name = last_name;
     this.phone = phone;
     this.email = email;
     this.password = password;
     this.created_by = this.name + ' ' + this.last_name;
+    this.edit_by = edit_by;
   }
 
   save() {
@@ -28,7 +29,9 @@ class User {
         email,
         created_at,
         password,
-        created_by
+        created_by,
+        edit_date,
+        edit_by
       ) VALUES (
         '${this.name}',
         '${this.last_name}',
@@ -36,7 +39,9 @@ class User {
         '${this.email}',
         '${date}',
         '${this.password}',
-        '${this.created_by}'
+        '${this.created_by}',
+        '${date}',
+        '${this.edit_by}'
       )
   `;
 
@@ -73,13 +78,16 @@ class User {
   }
 
   static findByEmail(email) {
-    let sql = `SELECT * FROM user WHERE email = '${email}';`;
+    let sql = `SELECT user.*, user_has_role.role_idrole FROM user
+              LEFT JOIN user_has_role ON user.iduser = user_has_role.user_iduser
+              WHERE user.email = '${email}';
+    `;
     return db.execute(sql);
   }
 
   static findAll() {
     let sql = `
-            SELECT * FROM user
+            SELECT * FROM allusers;
         `;
 
     return db.execute(sql);
@@ -92,6 +100,11 @@ class User {
 
   static deleteById(id) {
     let sql = `DELETE FROM user WHERE iduser = ${id};`;
+    return db.execute(sql);
+  }
+
+  static deleteByIdRole(id) {
+    let sql = `DELETE FROM user_has_role WHERE user_iduser = ${id};`;
     return db.execute(sql);
   }
 
@@ -112,6 +125,19 @@ class User {
 
   async updateUserPhoneById(id) {
     let sql = `UPDATE user SET phone = '${this.phone}' WHERE iduser = ${id};`;
+    return db.execute(sql);
+  }
+
+  async updateUserDataById(id) {
+    let sql = `
+        UPDATE user SET 
+            name = '${this.name}', 
+            last_name = '${this.last_name}',
+            phone = '${this.phone}',
+            email = '${this.email}',
+            edit_by = '${this.edit_by}'
+        WHERE iduser = ${id};
+    `;
     return db.execute(sql);
   }
 }

@@ -1,82 +1,116 @@
 import {defineStore} from 'pinia';
+import {ref} from "vue";
 
-import {fetchWrapper} from '@/helpers';
-import {useAuthStore} from '@/stores';
-import makeRequest from '@/helpers/http';
+import makeBodyRequest from '@/helpers/apiService';
 import router from "../router";
+import { useAuthStore } from '@/stores';
 
-const baseUrl = `${import.meta.env.VITE_API_URL}/users`;
+export const useUsersStore = defineStore('users', () => {
+  const user = ref(null);
+  const usersData = ref(null);
+  const authStore = useAuthStore();
 
-export const useUsersStore = defineStore({
-  id: 'users',
-  state: () => ({
-    users: {},
-    user: {}
-  }),
-  actions: {
-    async register({name, lastName, email, phone, password}) {
-      try {
-        await makeRequest('http://localhost:8000/users', {
-          method: 'post',
-          body: {
-            name: name,
-            last_name: lastName,
-            email: email,
-            phone: phone,
-            password: password
-          }
+  const register = async ({name, lastName, email, phone, password}) => {
+    try {
+      await makeBodyRequest('http://localhost:8000/users', {
+        method: 'post', body: {
+          name: name, last_name: lastName, email: email, phone: phone, password: password
+        }
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          user.value = data
         })
-          .then((response) => response.json())
-          .then(this.$emit("afterRegister"))
-          .then(await router.push({name: "login"}));
-      } catch (error) {
-        throw new Error(error);
-      }
-    },
-    async getAll() {
-      this.users = {loading: true};
-      try {
-        this.users = await fetchWrapper.get(baseUrl);
-      } catch (error) {
-        this.users = {error};
-      }
-    },
-    async getById(id) {
-      this.user = {loading: true};
-      try {
-        this.user = await fetchWrapper.get(`${baseUrl}/${id}`);
-      } catch (error) {
-        this.user = {error};
-      }
-    },
-    async update(id, params) {
-      await fetchWrapper.put(`${baseUrl}/${id}`, params);
-
-      // update stored user if the logged in user updated their own record
-      const authStore = useAuthStore();
-      if (id === authStore.user.id) {
-        // update local storage
-        const user = {...authStore.user, ...params};
-        localStorage.setItem('user', JSON.stringify(user));
-
-        // update auth user in pinia state
-        authStore.user = user;
-      }
-    },
-    async delete(id) {
-      // add isDeleting prop to user being deleted
-      this.users.find(x => x.id === id).isDeleting = true;
-
-      await fetchWrapper.delete(`${baseUrl}/${id}`);
-
-      // remove user from list after deleted
-      this.users = this.users.filter(x => x.id !== id);
-
-      // auto logout if the logged in user deleted their own record
-      const authStore = useAuthStore();
-      if (id === authStore.user.id) {
-        authStore.logout();
-      }
+        .then(await router.push({name: "login"}));
+    } catch (error) {
+      throw new Error(error);
     }
   }
+
+  const updateUserDataById = async (id, {name, lastName, phone, email, editBy}) => {
+    try {
+      await makeBodyRequest(`http://localhost:8000/users/userData/${id}`, {
+        method: 'put', body: {
+          name: name,
+          last_name: lastName,
+          phone: phone,
+          email: email,
+          edit_by: editBy
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          user.value = data
+        })
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  const getAll = async () => {
+    try {
+      await fetch('http://localhost:8000/users', {
+        method: 'get',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: authStore?.authToken
+        }
+      })
+      // wait for the response
+        .then((response) => response.json())
+        .then((data) => {
+          usersData.value = data.users;
+        })
+
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  const deleteUser = async (id) => {
+    try {
+      await fetch(`http://localhost:8000/users/${id}`, {
+        method: 'delete',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: authStore?.authToken
+        }
+      })
+      // wait for the response
+        .then((response) => response.json())
+        .then((data) => {
+          usersData.value = data.users;
+          getAll();
+        })
+
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  // const getById = async(id) => {
+  //   this.user = {loading: true};
+  //   try {
+  //     this.user = await fetchWrapper.get(`${baseUrl}/${id}`);
+  //   } catch (error) {
+  //     this.user = {error};
+  //   }
+  // }
+  //
+  // const update = async (id, params) => {
+  //   await fetchWrapper.put(`${baseUrl}/${id}`, params);
+  //
+  //   // update stored user if the logged in user updated their own record
+  //   const authStore = useAuthStore();
+  //   if (id === authStore.user.id) {
+  //     // update local storage
+  //     const user = {...authStore.user, ...params};
+  //     localStorage.setItem('user', JSON.stringify(user));
+  //
+  //     // update auth user in pinia state
+  //     authStore.user = user;
+  //   }
+  // }
+
+  return {register, getAll, usersData, deleteUser, updateUserDataById}
 });

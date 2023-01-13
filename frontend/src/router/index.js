@@ -1,42 +1,56 @@
-import { createRouter, createWebHistory } from "vue-router";
-import Login from "../views/account/Login.vue";
-import Register from "../views/account/Register.vue"
+import {createRouter, createWebHistory} from "vue-router";
 
 const routes = [
-    {
-        path: "/account/login",
-        name: "login",
-        component: Login,
-        meta: {
-            title: "Zaloguj się",
-        },
+  {
+    path: "/",
+    name: "home",
+    component: () => import("../views/Home.vue"),
+    meta: {
+      title: "Strona główna",
     },
-    {
-        path: "/account/register",
-        name: "register",
-        component: Register,
-        meta: {
-            title: "Rejestracja",
-        },
+  },
+  {
+    path: "/account/login",
+    name: "login",
+  component: () => import("../views/account/Login.vue"),
+    meta: {
+      title: "Zaloguj się",
     },
-    {
-        path: "/",
-        name: "home",
-        component: () => import("../views/Home.vue"),
-        meta: {
-            title: "Strona główna",
-        },
+  },
+  {
+    path: "/account/register",
+    name: "register",
+    component: () => import("../views/account/Register.vue"),
+    meta: {
+      title: "Rejestracja",
     },
+  },
+  {
+    path: "/users",
+    name: "users",
+    component: () => import("../views/users/List.vue"),
+    meta: {
+      title: "Użytkownicy",
+    },
+  },
+  {
+    path: "/users/addEdit",
+    name: "addEdit",
+    component: () => import("../views/users/AddEdit.vue"),
+    meta: {
+      title: "Dodaj/Edytuj",
+    },
+  },
 ];
 
 const router = createRouter({
-    history: createWebHistory(),
-    routes,
+  history: createWebHistory(),
+  routes,
 });
 
 router.beforeEach((to, from, next) => {
-    document.title = "fitbea" + (to.meta.title ? " - " + to.meta.title : "");
-    next();
+  document.title = "fitbea" + (to.meta.title ? " - " + to.meta.title : "");
+  next();
 });
 
 export default router;

@@ -15,6 +15,10 @@ export const useAuthStore = defineStore('auth', () => {
     userData.value = JSON.parse(Cookies.get("userData"));
   }
 
+  if (Cookies.get("Authorization")) {
+    authToken.value = Cookies.get("Authorization");
+  }
+
   const login = async ({username, password}) => {
     try {
       await fetch('http://localhost:8000/users/login', {

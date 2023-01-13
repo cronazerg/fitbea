@@ -4,24 +4,23 @@
     <list default="true" id="2dc01532-1f02-472b-b579-488de8ac1c37" name="Changes" comment="changes-to-frontend-03-auth">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/controllers/userControllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/controllers/userControllers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/middleware/cookieJwtAuth.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/middleware/cookieJwtAuth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/User.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/routes/userRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/userRoutes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/helpers/fake-backend.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/helpers/http.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/helpers/apiService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/account.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/account.routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/users.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/users.routes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/stores/auth.store.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/auth.store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/stores/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/stores/register.store.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/stores/users.store.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/users.store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/account/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/account/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/account/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/account/Register.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/account/Layout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/account/Layout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/users/AddEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/users/AddEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/users/Layout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/users/Layout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/users/List.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/users/List.vue" afterDir="false" />
     </list>
-    <list id="88f3cd71-98da-4106-b821-abc003c1a208" name="Changes by Arek" comment="changes-for-login-and-store">
-      <change afterPath="$PROJECT_DIR$/frontend/src/helpers/http.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/helpers/fetch-wrapper.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/helpers/fetch-wrapper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/stores/auth.store.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/auth.store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/Home.vue" afterDir="false" />
-    </list>
+    <list id="88f3cd71-98da-4106-b821-abc003c1a208" name="Changes by Arek" comment="changes-for-login-and-store" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,25 +48,6 @@
         <option value="do-not-push-to-master" />
       </list>
     </option>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/frontend/src/stores/auth.store.js">
-      <ranges>
-        <range start1="2" end1="3" start2="2" end2="3" changelist="88f3cd71-98da-4106-b821-abc003c1a208" />
-        <range start1="11" end1="11" start2="11" end2="16" changelist="88f3cd71-98da-4106-b821-abc003c1a208" />
-        <range start1="32" end1="32" start2="37" end2="39" changelist="88f3cd71-98da-4106-b821-abc003c1a208" />
-        <range start1="46" end1="47" start2="53" end2="54" changelist="2dc01532-1f02-472b-b579-488de8ac1c37" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/frontend/src/views/Home.vue">
-      <ranges>
-        <range start1="0" end1="1" start2="0" end2="1" changelist="2dc01532-1f02-472b-b579-488de8ac1c37" />
-        <range start1="2" end1="3" start2="2" end2="2" changelist="2dc01532-1f02-472b-b579-488de8ac1c37" />
-        <range start1="5" end1="7" start2="4" end2="28" changelist="88f3cd71-98da-4106-b821-abc003c1a208" />
-        <range start1="12" end1="13" start2="33" end2="34" changelist="2dc01532-1f02-472b-b579-488de8ac1c37" />
-        <range start1="15" end1="16" start2="36" end2="37" changelist="2dc01532-1f02-472b-b579-488de8ac1c37" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -99,7 +79,7 @@
       <recent name="C:\Users\tomas\WebstormProjects\fitbea\frontend\src\views\account" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.runExpress">
+  <component name="RunManager" selected="npm.runVue">
     <configuration name="runExpress" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/backend/package.json" />
       <command value="run" />
@@ -177,6 +157,11 @@
       <workItem from="1673377000104" duration="5146000" />
       <workItem from="1673419230140" duration="1806000" />
       <workItem from="1673459085049" duration="8898000" />
+      <workItem from="1673506989117" duration="10240000" />
+      <workItem from="1673556801297" duration="601000" />
+      <workItem from="1673594081114" duration="5024000" />
+      <workItem from="1673602993182" duration="652000" />
+      <workItem from="1673609348822" duration="13832000" />
     </task>
     <task id="LOCAL-00001" summary="add-more-config-for-project">
       <created>1668252690482</created>

@@ -30,9 +30,35 @@ export default {
 </script>
 
 <template>
-    <div>
-        <h1 v-if="authStore.isLogged"> Hi {{ authStore.userData.name }} !</h1>
-        <p>You're logged in with Vue 3 + Pinia & JWT!!</p>
+    <div class="homepage">
+      <div class ="hero-text">
+        <h1 v-if="authStore.isLogged"> Cześć {{ authStore.userData.name }} !!!</h1>
+        <h2>Rozpocznij swój trening już dzisiaj!</h2>
+        <p>Zobacz jakie możliwości daje nasz wspaniały kelendarz i wybierz najepszy trening dla siebie</p>
         <p v-if="!authStore.isLogged"><router-link to="/account/login">Zaloguj się</router-link></p>
+      </div>
     </div>
 </template>
+
+<style lang="scss">
+.homepage {
+  color: #fff;
+  text-align: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)), url("../assets/img/background.jpg");
+  background-color: #cccccc;
+  height: 95.5vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+}
+</style>

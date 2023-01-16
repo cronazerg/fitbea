@@ -1,15 +1,16 @@
 <script>
 
-import * as Yup from 'yup';
 import dayjs from 'dayjs';
-import {useUsersStore} from '@/stores';
+import { useUsersStore, useAuthStore } from '@/stores';
 
 export default {
   name: "List",
   setup() {
     const userStore = useUsersStore();
+    const authStore = useAuthStore();
     return {
-      userStore
+      userStore,
+      authStore
     };
   },
 
@@ -19,11 +20,11 @@ export default {
       users: [],
       dayjs: dayjs,
       errors: '',
-      name: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      edit_by: ''
+      name: 'hgjgjghj',
+      lastName: 'ghjghjghj',
+      email: 'ghjghjghj',
+      phone: 'gghjghjgjg',
+      edit_by: 79
     }
   },
 
@@ -32,9 +33,9 @@ export default {
       console.log(data);
     },
 
-    async onEdit() {
+    async onEdit(id) {
       try {
-        await this.usersStore.updateUserDataById(77, {
+        await this.userStore.updateUserDataById(id, {
           name: this.name,
           lastName: this.lastName,
           email: this.email,
@@ -48,14 +49,12 @@ export default {
         this.lastName = "";
         this.email = "";
         this.phone = "";
-        this.password = "";
       }
     }
   },
 
   created() {
     this.userStore.getAll();
-    this.onEdit()
   }
 }
 
@@ -63,48 +62,61 @@ export default {
 </script>
 
 <template>
-  <h1>Users</h1>
-  <router-link to="users/addEdit" class="btn btn-link">addEdit</router-link>
-  <table id="users">
-    <thead>
-    <tr>
-      <th>id</th>
-      <th>id_role</th>
-      <th>created_by</th>
-      <th>name</th>
-      <th>last_name</th>
-      <th>email</th>
-      <th>phone</th>
-      <th>created_at</th>
-      <th>created_by</th>
-      <th>edit_by</th>
-      <th>edit_date</th>
-      <th>Usuń</th>
-      <th>Edytuj</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr v-for="user in userStore.usersData" :key="user.iduser">
-      <td>{{ user.iduser }}</td>
-      <td>{{ user.role_idrole }}</td>
-      <td>{{ user.created_by }}</td>
-      <td>{{ user.name }}</td>
-      <td>{{ user.last_name }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.phone }}</td>
-      <td>{{ dayjs(user.created_at).format('YYYY-MM-DD') }}</td>
-      <td>{{ user.created_by }}</td>
-      <td>{{ user.edit_by }}</td>
-      <td>{{ dayjs(user.edit_date).format('YYYY-MM-DD') }}</td>
-      <td><button @click=this.userStore.deleteUser(user.iduser)>Usuń</button></td>
-      <td><button @click=''>Edytuj</button></td>
-    </tr>
-    </tbody>
-  </table>
+  <div class="usersView" v-if="authStore.userData.role_idrole === 1">
+    <h1>Users</h1>
+    <router-link to="users/addEdit" class="btn btn-link">addEdit</router-link>
+    <table id="users">
+      <thead>
+      <tr>
+        <th>id</th>
+        <th>id_role</th>
+        <th>created_by</th>
+        <th>name</th>
+        <th>last_name</th>
+        <th>email</th>
+        <th>phone</th>
+        <th>created_at</th>
+        <th>created_by</th>
+        <th>edit_by</th>
+        <th>edit_date</th>
+        <th>Usuń</th>
+        <th>Edytuj</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="user in userStore.usersData" :key="user.iduser">
+        <td>{{ user.iduser }}</td>
+        <td>{{ user.role_idrole }}</td>
+        <td>{{ user.created_by }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phone }}</td>
+        <td>{{ dayjs(user.created_at).format('YYYY-MM-DD') }}</td>
+        <td>{{ user.created_by }}</td>
+        <td>{{ user.edit_by }}</td>
+        <td>{{ dayjs(user.edit_date).format('YYYY-MM-DD') }}</td>
+        <td>
+          <button @click=this.userStore.deleteUser(user.iduser)>Usuń</button>
+        </td>
+        <td>
+          <button @click=this.onEdit(user.iduser)>Edytuj</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div v-else>
+    <h1>Brak dostępu</h1>
+  </div>
 
 </template>
 
 <style>
+.usersView {
+  padding: 20px 30px;
+}
+
 #users {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
@@ -131,11 +143,13 @@ export default {
   background-color: #f2f2f2;
 }
 
-#users tr:nth-child(even){
+#users tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-#users tr:hover {background-color: #ddd;}
+#users tr:hover {
+  background-color: #ddd;
+}
 
 #users th {
   padding-top: 12px;

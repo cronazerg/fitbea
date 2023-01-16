@@ -106,7 +106,7 @@ exports.updateUserDataById = async (req, res, next) => {
     let userId = req.params.id;
 
     let user = new User(name, last_name, phone, email, '', edit_by);
-    user = await user.updateUserDataById(userId);
+    user = await user.updateUserDataById(userId, edit_by);
 
     res.status(200).json({ message: 'User updated successfully', user });
   } catch (error) {
@@ -114,22 +114,6 @@ exports.updateUserDataById = async (req, res, next) => {
     next(error);
   }
 }
-
-
-exports.updateUserRole = async (req, res, next) => {
-  try {
-    let userId = req.params.id;
-    let { role } = req.body;
-
-    let user = new User(role, '', '', '', '', '');
-    user = await user.updateUserRoleById(userId);
-
-    res.status(200).json({ message: 'User updated successfully', user });
-  } catch (error) {
-    console.log(error);
-    next(error);
-  }
-};
 
 exports.updateUserPass = async (req, res, next) => {
   try {

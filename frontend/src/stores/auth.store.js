@@ -2,6 +2,9 @@ import {defineStore} from 'pinia';
 import {ref} from "vue";
 import Cookies from "js-cookie";
 import router from "../router";
+import { createToaster } from "@meforma/vue-toaster";
+
+const toasterAlert = createToaster({ /* options */ });
 
 // const baseUrl = `${import.meta.env.VITE_API_URL}/users`;
 
@@ -32,18 +35,24 @@ export const useAuthStore = defineStore('auth', () => {
           email: username,
           password: password
         }),
-      }).then((response) =>
-        response.json()
-      ).then((data) => {
-        if (data.token) {
-          authToken.value = data.token;
-          userData.value = data.user;
-          isLogged.value = true;
-          Cookies.set("userData", JSON.stringify(userData.value));
-          Cookies.set("Authorization", authToken.value);
-          router.push({name: 'home'});
+      }).then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Something went wrong");
         }
-      })
+      } ).then(data => {
+        authToken.value = data.token;
+        userData.value = data.user;
+        isLogged.value = true;
+        Cookies.set("Authorization", data.token);
+        Cookies.set("userData", JSON.stringify(data.user));
+        toasterAlert.success("Zalogowany!");
+        router.push({name: 'home'});
+
+      }).catch(error => {
+        toasterAlert.error("Coś poszło nie tak!");
+      });
     } catch (error) {
       isLogged.value = false;
       throw new Error(data);
@@ -52,6 +61,7 @@ export const useAuthStore = defineStore('auth', () => {
 
   const logout = async () => {
     isLogged.value = false;
+    toasterAlert.success("Zostałeś wylogowany");
     await router.push({name: "login"});
   };
 

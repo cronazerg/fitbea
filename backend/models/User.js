@@ -29,9 +29,7 @@ class User {
         email,
         created_at,
         password,
-        created_by,
-        edit_date,
-        edit_by
+        created_by
       ) VALUES (
         '${this.name}',
         '${this.last_name}',
@@ -39,9 +37,7 @@ class User {
         '${this.email}',
         '${date}',
         '${this.password}',
-        '${this.created_by}',
-        '${date}',
-        '${this.edit_by}'
+        '${this.created_by}'
       )
   `;
 
@@ -108,11 +104,6 @@ class User {
     return db.execute(sql);
   }
 
-  async updateUserRoleById(id) {
-    let sql = `UPDATE user SET role = '${this.role}' WHERE iduser = ${id};`;
-    return db.execute(sql);
-  }
-
   async updateUserPassById(id) {
     let sql = `UPDATE user SET password = '${this.password}' WHERE iduser = ${id};`;
     return db.execute(sql);
@@ -128,14 +119,15 @@ class User {
     return db.execute(sql);
   }
 
-  async updateUserDataById(id) {
+  async updateUserDataById(id, edit_by) {
     let sql = `
         UPDATE user SET 
             name = '${this.name}', 
             last_name = '${this.last_name}',
             phone = '${this.phone}',
             email = '${this.email}',
-            edit_by = '${this.edit_by}'
+            edit_date = NOW(),
+            edit_by = '${edit_by}'
         WHERE iduser = ${id};
     `;
     return db.execute(sql);

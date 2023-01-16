@@ -44,9 +44,6 @@ app.use("/room", require("./routes/roomRoutes"));
 // Routes for Lessons
 app.use("/lessons", require("./routes/lessonRoutes"));
 
-// Routes for Roles
-app.use("/roles", require("./routes/roleRoutes"));
-
 // Routes for feature
 app.use("/feature", require("./routes/featureRoutes"));
 

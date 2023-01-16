@@ -16,9 +16,6 @@ router.route("/:id")
     .get(userControllers.getSingleUser)
     .delete(cookieJwtAuth, userControllers.deleteUser);
 
-router.route("/role/:id")
-    .put(userControllers.updateUserRole)
-
 router.route("/userData/:id")
   .put(userControllers.updateUserDataById)
 

@@ -1,9 +1,12 @@
 import {useAuthStore} from '@/stores';
+import { createToaster } from "@meforma/vue-toaster";
+
+const toasterAlert = createToaster({ /* options */ });
+
 
 const makeBodyRequest = async (path, { method, body }) => {
   const authStore = useAuthStore();
 
-  console.log(JSON.stringify(body));
   if (authStore.user === null) {
     await authStore.logout();
     return;
@@ -15,6 +18,13 @@ const makeBodyRequest = async (path, { method, body }) => {
   });
 
   const data = await response;
+  
+  if (!response.ok) {
+    toasterAlert.error('Operacja nie powiodła się', data.message);
+  } else if (response.ok) {
+    toasterAlert.success('Operacja powiodła się', data.message);
+  }
+
 
   if (data.status === "success") {
     return data;
@@ -37,4 +47,4 @@ function authHeader(url) {
   };
 }
 
-export default {makeBodyRequest};
+export default makeBodyRequest;

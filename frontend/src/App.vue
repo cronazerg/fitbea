@@ -9,14 +9,16 @@ const authStore = useAuthStore();
     <div class="app-container" :class="authStore.user && 'bg-light'">
         <Nav />
         <Alert />
-        <div class="container pt-4 pb-4">
+        <div class="app">
             <router-view />
         </div>
     </div>
 </template>
 
-<style>
-.container {
-  max-width: 90vw;
+<style lang="scss">
+
+.app {
+  max-width: 100%;
 }
+
 </style>

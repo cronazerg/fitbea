@@ -1,6 +1,5 @@
 <script>
 import { Form, Field } from 'vee-validate';
-import * as Yup from 'yup';
 
 import { useUsersStore, useAlertStore } from '@/stores';
 
@@ -16,20 +15,6 @@ import { useUsersStore, useAlertStore } from '@/stores';
 //     ({ user } = storeToRefs(usersStore));
 //     usersStore.getById(id);
 // }
-
-// const schema = Yup.object().shape({
-//     firstName: Yup.string()
-//         .required('First Name is required'),
-//     lastName: Yup.string()
-//         .required('Last Name is required'),
-//     username: Yup.string()
-//         .required('Username is required'),
-//     password: Yup.string()
-//         .transform(x => x === '' ? undefined : x)
-//         // password optional in edit mode
-//         .concat(user ? null : Yup.string().required('Password is required'))
-//         .min(6, 'Password must be at least 6 characters')
-// });
 
 // async function onSubmit(values) {
 //     try {

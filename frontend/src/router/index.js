@@ -41,6 +41,14 @@ const routes = [
       title: "Dodaj/Edytuj",
     },
   },
+  {
+    path: "/calendar",
+    name: "calendar",
+    component: () => import("../views/calendar/calendar.vue"),
+    meta: {
+      title: "Kalendarz",
+    },
+  }
 ];
 
 const router = createRouter({

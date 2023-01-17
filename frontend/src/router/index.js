@@ -44,7 +44,7 @@ const routes = [
   {
     path: "/calendar",
     name: "calendar",
-    component: () => import("../views/calendar/calendar.vue"),
+    component: () => import("../views/calendar/Calendar.vue"),
     meta: {
       title: "Kalendarz",
     },

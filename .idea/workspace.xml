@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2dc01532-1f02-472b-b579-488de8ac1c37" name="Changes" comment="complete-edit-user">
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/calendar/components/CalendarForm.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/calendar/components/CalendarLesson.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/calendar/components/CalendarWeek.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/calendar/enum.js" afterDir="false" />
+    <list default="true" id="2dc01532-1f02-472b-b579-488de8ac1c37" name="Changes" comment="calendar-on-going">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/stores/calendar.store.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/calendar.store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/account/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/account/Register.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/calendar/Calendar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/calendar/Calendar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/calendar/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/calendar/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/calendar/components/CalendarForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/calendar/components/CalendarForm.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/calendar/components/CalendarLesson.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/calendar/components/CalendarLesson.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/calendar/components/CalendarWeek.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/calendar/components/CalendarWeek.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +71,7 @@
       <recent name="C:\Users\tomas\WebstormProjects\fitbea\frontend\src\assets\img" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.runExpress">
+  <component name="RunManager" selected="npm.runVue">
     <configuration name="runExpress" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/backend/package.json" />
       <command value="run" />
@@ -162,7 +155,8 @@
       <workItem from="1673602993182" duration="652000" />
       <workItem from="1673609348822" duration="14090000" />
       <workItem from="1673894629328" duration="12322000" />
-      <workItem from="1673939761318" duration="23412000" />
+      <workItem from="1673939761318" duration="24095000" />
+      <workItem from="1673972864608" duration="4606000" />
     </task>
     <task id="LOCAL-00001" summary="add-more-config-for-project">
       <created>1668252690482</created>
@@ -255,7 +249,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673957003651</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="calendar-on-going">
+      <created>1673970046621</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1673970046621</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -287,6 +288,7 @@
     <MESSAGE value="another-pack-of-changes" />
     <MESSAGE value="changes-to-login-and-toster-list-on-going" />
     <MESSAGE value="complete-edit-user" />
-    <option name="LAST_COMMIT_MESSAGE" value="complete-edit-user" />
+    <MESSAGE value="calendar-on-going" />
+    <option name="LAST_COMMIT_MESSAGE" value="calendar-on-going" />
   </component>
 </project>

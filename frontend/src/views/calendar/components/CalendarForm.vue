@@ -55,20 +55,23 @@ const authStore = useAuthStore();
 .fitCalendar {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 70%;
+  margin: 0 auto;
   height: 100%;
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  box-shadow: 0 0 70px rgb(0 0 0 / 30%);
   .form-group {
     width: calc(100%/5);
     display: flex;
     justify-content: space-around;
     flex-wrap: nowrap;
     align-items: center;
+    margin-left: 20px;
     label {
       display: block;
       margin-bottom: 5px;

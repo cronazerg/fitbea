@@ -61,6 +61,7 @@ export const useAuthStore = defineStore('auth', () => {
 
   const logout = async () => {
     isLogged.value = false;
+    document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
     toasterAlert.success("Zostałeś wylogowany");
     await router.push({name: "login"});
   };

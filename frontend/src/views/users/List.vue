@@ -2,6 +2,7 @@
 
 import dayjs from 'dayjs';
 import { useUsersStore, useAuthStore } from '@/stores';
+import router from "../../router";
 
 export default {
   name: "List",
@@ -15,16 +16,17 @@ export default {
   },
 
   data() {
+    let authStore = useAuthStore();
     return {
       usersData: null,
       users: [],
       dayjs: dayjs,
       errors: '',
-      name: 'hgjgjghj',
-      lastName: 'ghjghjghj',
-      email: 'ghjghjghj',
-      phone: 'gghjghjgjg',
-      edit_by: 79
+      name: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      edit_by: authStore.userData.iduser
     }
   },
 
@@ -50,6 +52,18 @@ export default {
         this.email = "";
         this.phone = "";
       }
+    },
+
+    saveUser(user) {
+      this.userStore.saveUser({
+        id: user.iduser,
+        role_idrole: user.role_idrole,
+        name: user.name,
+        lastName: user.last_name,
+        email: user.email,
+        phone: user.phone,
+        edit_by: this.edit_by,
+      });
     }
   },
 
@@ -63,8 +77,7 @@ export default {
 
 <template>
   <div class="usersView" v-if="authStore.userData.role_idrole === 1">
-    <h1>Users</h1>
-    <router-link to="users/addEdit" class="btn btn-link">addEdit</router-link>
+    <h1 class="mainHeader">Użytkownicy</h1>
     <table id="users">
       <thead>
       <tr>
@@ -100,7 +113,7 @@ export default {
           <button @click=this.userStore.deleteUser(user.iduser)>Usuń</button>
         </td>
         <td>
-          <button @click=this.onEdit(user.iduser)>Edytuj</button>
+          <button @click=this.saveUser(user)>Edytuj</button>
         </td>
       </tr>
       </tbody>
@@ -117,6 +130,10 @@ export default {
   padding: 20px 30px;
 }
 
+.mainHeader {
+  padding: 20px 0;
+}
+
 #users {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
@@ -129,7 +146,7 @@ export default {
 }
 
 #users td button {
-  background-color: #04AA6D;
+  background-color: #4b5897;
   border: none;
   color: white;
   padding: 8px 16px;
@@ -155,7 +172,7 @@ export default {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #04AA6D;
+  background-color: #4b5897;
   color: white;
 }
 

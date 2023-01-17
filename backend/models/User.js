@@ -121,14 +121,24 @@ class User {
 
   async updateUserDataById(id, edit_by) {
     let sql = `
-        UPDATE user SET 
-            name = '${this.name}', 
+        UPDATE user SET
+            name = '${this.name}',
             last_name = '${this.last_name}',
             phone = '${this.phone}',
             email = '${this.email}',
             edit_date = NOW(),
             edit_by = '${edit_by}'
         WHERE iduser = ${id};
+    `;
+    return db.execute(sql);
+  }
+
+  static updateUserHasRole(id, edit_by, role_idrole) {
+    let sql = `
+        UPDATE user_has_role SET
+            role_idrole = ${role_idrole},
+            edit_by = '${edit_by}'
+        WHERE user_iduser = ${id};
     `;
     return db.execute(sql);
   }

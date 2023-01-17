@@ -100,15 +100,25 @@ exports.createUser = async (req, res, next) => {
 };
 
 exports.updateUserDataById = async (req, res, next) => {
-  let { name, last_name, phone, email, edit_by } = req.body;
+  let { role, name, last_name, phone, email, edit_by } = req.body;
 
   try {
     let userId = req.params.id;
 
     let user = new User(name, last_name, phone, email, '', edit_by);
-    user = await user.updateUserDataById(userId, edit_by);
+
+    user = await user.updateUserDataById(userId, edit_by, role);
 
     res.status(200).json({ message: 'User updated successfully', user });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+
+  try {
+    let userId = req.params.id;
+
+    let [_] = await User.updateUserHasRole(userId, edit_by, role);
   } catch (error) {
     console.log(error);
     next(error);

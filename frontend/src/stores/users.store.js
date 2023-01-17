@@ -11,6 +11,8 @@ const toasterAlert = createToaster({ /* options */ });
 export const useUsersStore = defineStore('users', () => {
   const user = ref(null);
   const usersData = ref(null);
+  const userToEdit = ref(null);
+
   const authStore = useAuthStore();
 
   const register = async ({name, lastName, email, phone, password}) => {
@@ -50,33 +52,47 @@ export const useUsersStore = defineStore('users', () => {
     }
   }
 
-  const updateUserDataById = async (id, {name, lastName, phone, email, edit_by}) => {
+  const saveUser = async ({id, role_idrole, name, lastName, email, phone}) => {
+    userToEdit.value = {
+      id: id,
+      role_idrole: role_idrole,
+      name: name,
+      lastName: lastName,
+      email: email,
+      phone: phone,
+      edit_by: authStore?.userData?.iduser
+    }
+
+
+    localStorage.setItem('userToEdit', JSON.stringify(userToEdit.value));
+    await router.push({name: "addEdit"})
+  }
+
+  const updateUserDataById = async (id, {role, name, lastName, phone, email, edit_by}) => {
     try {
-      // await makeBodyRequest(`http://localhost:8000/users/userData/${id}`, {
-      //   method: 'put', body: {
-      //     name: name,
-      //     last_name: lastName,
-      //     phone: phone,
-      //     email: email,
-      //     edit_by: edit_by
-      //   },
-      // })
       await fetch(`http://localhost:8000/users/userData/${id}`, {
         method: 'put',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          role: role,
           name: name,
           last_name: lastName,
-          // phone: phone,
-          // email: email,
+          phone: phone,
+          email: email,
           edit_by: edit_by
         })
       })
-        .then((response) => response.json())
-        .then(() => {
-          getAll();
+        .then((response) => {
+          if (response.status === 200) {
+            response.json()
+            toasterAlert.success("Pomyślnie zmieniono dane");
+          } else {
+            toasterAlert.error("Błąd podczas zmiany danych");
+          }
+        }).then(async () => {
+          await router.push({name: "users"})
         })
     } catch (error) {
       throw new Error(error);
@@ -104,29 +120,5 @@ export const useUsersStore = defineStore('users', () => {
     }
   }
 
-  // const getById = async(id) => {
-  //   this.user = {loading: true};
-  //   try {
-  //     this.user = await fetchWrapper.get(`${baseUrl}/${id}`);
-  //   } catch (error) {
-  //     this.user = {error};
-  //   }
-  // }
-  //
-  // const update = async (id, params) => {
-  //   await fetchWrapper.put(`${baseUrl}/${id}`, params);
-  //
-  //   // update stored user if the logged in user updated their own record
-  //   const authStore = useAuthStore();
-  //   if (id === authStore.user.id) {
-  //     // update local storage
-  //     const user = {...authStore.user, ...params};
-  //     localStorage.setItem('user', JSON.stringify(user));
-  //
-  //     // update auth user in pinia state
-  //     authStore.user = user;
-  //   }
-  // }
-
-  return {register, getAll, usersData, deleteUser, updateUserDataById}
+  return {register, getAll, usersData, deleteUser, updateUserDataById, userToEdit, saveUser}
 });

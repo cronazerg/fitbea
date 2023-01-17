@@ -1,88 +1,143 @@
 <script>
-import { Form, Field } from 'vee-validate';
+import {useUsersStore, useAuthStore} from '@/stores';
+import dayjs from "dayjs";
+import typeEnum from "./enum";
 
-import { useUsersStore, useAlertStore } from '@/stores';
+export default {
+  name: "addEdit",
+  setup() {
+    const userStore = useUsersStore();
+    const authStore = useAuthStore();
+    const rolesIdEnums = typeEnum;
+    return {
+      userStore,
+      authStore,
+      rolesIdEnums
+    };
+  },
 
-//
-// const route = useRoute();
-// const id = route.params.id;
-//
-// let title = 'Add User';
-// let user = null;
-// if (id) {
-//     // edit mode
-//     title = 'Edit User';
-//     ({ user } = storeToRefs(usersStore));
-//     usersStore.getById(id);
-// }
+  data() {
+    const userStore = useUsersStore();
+    return {
+      usersData: null,
+      users: [],
+      errors: '',
+      id: userStore.userToEdit.id,
+      role: 2,
+      name: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      edit_by: userStore.userToEdit.edit_by
+    }
+  },
 
-// async function onSubmit(values) {
-//     try {
-//         let message;
-//         if (user) {
-//             await usersStore.update(user.value.id, values)
-//             message = 'User updated';
-//         } else {
-//             await usersStore.register(values);
-//             message = 'User added';
-//         }
-//         await router.push('/users');
-//         alertStore.success(message);
-//     } catch (error) {
-//         alertStore.error(error);
-//     }
-// }
+  methods: {
+    async onSubmit() {
+      try {
+        await this.userStore.updateUserDataById(this.id, {
+          role: parseInt(this.role),
+          name: this.name,
+          lastName: this.lastName,
+          email: this.email,
+          phone: this.phone,
+          password: this.password,
+          edit_by: this.edit_by
+        });
+      } catch (error) {
+        this.role = null;
+        this.name = "";
+        this.lastName = "";
+        this.email = "";
+        this.phone = "";
+        this.password = "";
+      }
+    }
+  }
+}
+
 </script>
 
 <template>
-  <h1>addEdit</h1>
-  <h1>{{title}}</h1>
-<!--    <template v-if="!(user?.loading || user?.error)">-->
-<!--        <Form @submit="onSubmit" :validation-schema="schema" :initial-values="user" v-slot="{ errors, isSubmitting }">-->
-<!--            <div class="form-row">-->
-<!--                <div class="form-group col">-->
-<!--                    <label>First Name</label>-->
-<!--                    <Field name="firstName" type="text" class="form-control" :class="{ 'is-invalid': errors.firstName }" />-->
-<!--                    <div class="invalid-feedback">{{ errors.firstName }}</div>-->
-<!--                </div>-->
-<!--                <div class="form-group col">-->
-<!--                    <label>Last Name</label>-->
-<!--                    <Field name="lastName" type="text" class="form-control" :class="{ 'is-invalid': errors.lastName }" />-->
-<!--                    <div class="invalid-feedback">{{ errors.lastName }}</div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="form-row">-->
-<!--                <div class="form-group col">-->
-<!--                    <label>Username</label>-->
-<!--                    <Field name="username" type="text" class="form-control" :class="{ 'is-invalid': errors.username }" />-->
-<!--                    <div class="invalid-feedback">{{ errors.username }}</div>-->
-<!--                </div>-->
-<!--                <div class="form-group col">-->
-<!--                    <label>-->
-<!--                        Password-->
-<!--                        <em v-if="user">(Leave blank to keep the same password)</em>-->
-<!--                    </label>-->
-<!--                    <Field name="password" type="password" class="form-control" :class="{ 'is-invalid': errors.password }" />-->
-<!--                    <div class="invalid-feedback">{{ errors.password }}</div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="form-group">-->
-<!--                <button class="btn btn-primary" :disabled="isSubmitting">-->
-<!--                    <span v-show="isSubmitting" class="spinner-border spinner-border-sm mr-1"></span>-->
-<!--                    Save-->
-<!--                </button>-->
-<!--                <router-link to="/users" class="btn btn-link">Cancel</router-link>-->
-<!--            </div>-->
-<!--        </Form>-->
-<!--    </template>-->
-<!--    <template v-if="user?.loading">-->
-<!--        <div class="text-center m-5">-->
-<!--            <span class="spinner-border spinner-border-lg align-center"></span>-->
-<!--        </div>-->
-<!--    </template>-->
-<!--    <template v-if="user?.error">-->
-<!--        <div class="text-center m-5">-->
-<!--            <div class="text-danger">Error loading user: {{user.error}}</div>-->
-<!--        </div>-->
-<!--    </template>-->
+  <div class="changeData">
+    <h1 class="mainHeader">Zmień dane użytkownika</h1>
+    <div class="card m-3">
+      <h4 class="card-header">Zmiana danych użytkownika użytkownika id: <b>{{ userStore.userToEdit.id }}</b></h4>
+      <div class="card-body">
+        <Form @submit.prevent="this.onSubmit">
+          <div class="form-group">
+            <label>Zmień rolę z: <b>{{ userStore.userToEdit.role_idrole }}</b> na:</label>
+            <select required class="form-control" name="role" id="role" @change="event => this.role = event.target.value">
+              <option
+                  v-for="role in rolesIdEnums"
+                  :value="role.id"
+              >{{ role.name }}
+              </option
+              >
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Zmień imię z: <b>{{ userStore.userToEdit.name }}</b> na:</label>
+            <input required name="name" type="text" class="form-control" :class="{ 'is-invalid': errors.name }"
+                   @input="event => this.name = event.target.value"
+                   placeholder="Imię"
+            />
+            <div class="invalid-feedback">{{ errors.name }}</div>
+          </div>
+          <div class="form-group">
+            <label>Zmień nazwisko z: <b>{{ userStore.userToEdit.lastName }}</b> na:</label>
+            <input required name="lastName" type="text" class="form-control" :class="{ 'is-invalid': errors.lastName }"
+                   @input="event => this.lastName = event.target.value"
+                   placeholder="Nazwisko"
+            />
+            <div class="invalid-feedback">{{ errors.lastName }}</div>
+          </div>
+          <div class="form-group">
+            <label>Zmień email z: <b>{{ userStore.userToEdit.email }}</b> na:</label>
+            <input required name="username" type="text" class="form-control" :class="{ 'is-invalid': errors.email }"
+                   @input="event => this.email = event.target.value"
+                   placeholder="Email"
+            />
+            <div class="invalid-feedback">{{ errors.username }}</div>
+          </div>
+          <div class="form-group">
+            <label>Zmień telefon z: <b>{{ userStore.userToEdit.phone }}</b> </label>
+            <input required name="phone" type="text" class="form-control" :class="{ 'is-invalid': errors.password }"
+                   @input="event => this.phone = event.target.value"
+                   placeholder="Telefon"
+            />
+            <div class="invalid-feedback">{{ errors.phone }}</div>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary" :disabled="isSubmitting">
+              <span v-show="isSubmitting" class="spinner-border spinner-border-sm mr-1"></span>
+              Zmień dane
+            </button>
+            <router-link to="/users" class="btn btn-link">Wróć</router-link>
+          </div>
+        </Form>
+      </div>
+    </div>
+  </div>
 </template>
+
+<style lang="scss">
+.mainHeader {
+  padding: 20px 25px;
+}
+
+.changeData {
+  padding: 30px;
+}
+
+.register_view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  width: 800px;
+}
+</style>

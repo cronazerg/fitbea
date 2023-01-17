@@ -1,6 +1,6 @@
 <script>
 
-import {useUsersStore, useAlertStore} from '@/stores';
+import {useUsersStore} from '@/stores';
 
 export default {
   name: "Register",
@@ -77,7 +77,8 @@ export default {
           </div>
           <div class="form-group">
             <label>Hasło</label>
-            <input required name="password" type="password" class="form-control" :class="{ 'is-invalid': errors.password }"
+            <input required name="password" type="password" class="form-control"
+                   :class="{ 'is-invalid': errors.password }"
                    @input="event => this.password = event.target.value"/>
             <div class="invalid-feedback">{{ errors.password }}</div>
           </div>

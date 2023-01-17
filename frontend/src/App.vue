@@ -1,5 +1,5 @@
 <script setup>
-import { Nav, Alert } from '@/components';
+import { Nav } from '@/components';
 import { useAuthStore } from '@/stores';
 
 const authStore = useAuthStore();
@@ -8,7 +8,6 @@ const authStore = useAuthStore();
 <template>
     <div class="app-container" :class="authStore.user && 'bg-light'">
         <Nav />
-        <Alert />
         <div class="app">
             <router-view />
         </div>

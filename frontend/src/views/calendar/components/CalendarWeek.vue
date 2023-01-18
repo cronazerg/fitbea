@@ -141,7 +141,7 @@ export default {
   --eventColor1: #ffd6d1;
   --eventColor2: #fafaa3;
   --eventColor3: #e2f8ff;
-  --eventColor4: #d1ffe6;
+  --eventColor4: #feffe9;
 }
 
 .calendar {

@@ -12,7 +12,13 @@ router.route('/rooms')
 router.route('/trainers')
   .get(lessonControllers.getAllTrainers);
 
-router.route('/:date')
+router.route('/:date/:iduser')
   .get(lessonControllers.getLessonsByDate);
+
+router.route('/singIn/:iduser/:idlesson')
+  .get(lessonControllers.singOnLesson);
+
+router.route('/singOut/:iduser/:idlesson')
+  .delete(lessonControllers.singOffLesson);
 
 module.exports = router;

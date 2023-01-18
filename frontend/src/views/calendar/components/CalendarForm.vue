@@ -1,5 +1,5 @@
 <script>
-import {useUsersStore, useLessonStore} from '@/stores';
+import {useUsersStore, useLessonStore, useAuthStore} from '@/stores';
 import moment from 'moment';
 
 export default {
@@ -7,10 +7,12 @@ export default {
   setup() {
     const usersStore = useUsersStore();
     const lessonStore = useLessonStore()
+    const userStore = useAuthStore()
 
     return {
       usersStore,
-      lessonStore
+      lessonStore,
+      userStore
     };
   },
 
@@ -25,7 +27,7 @@ export default {
   },
 
   created() {
-    this.lessonStore.getLessonByDate(`${this.date}`);
+    this.lessonStore.getLessonByDate(`${this.date}`, this.userStore.userData.iduser);
     this.lessonStore.getAllRooms();
   }
 }

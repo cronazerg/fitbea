@@ -80,13 +80,54 @@ class Lesson {
     return db.execute(sql);
   }
 
-  static async getLessonsByDate(date) {
+  static async getLessonsByDate(date, iduser) {
     let sql = `
-        SELECT * FROM lesson 
-        WHERE date >= ${date} AND date <= date_add(${date} , interval 5 day)
-        ORDER BY date;
+        SELECT lesson.*, room.room_number, room.size, trainer_has_lesson.user_iduser, user.name, user.last_name, room.zone_idzone as 'idzone', zone.location_idlocation as 'idlocation',
+        CASE
+          WHEN user_has_lesson.user_iduser IS NOT NULL THEN count(iduser) 
+            ELSE 0 
+        END as 'userCount',
+        CASE
+        WHEN ${iduser} = user_has_lesson.user_iduser THEN true
+            ELSE false
+        END as 'alreadyOnLesson'
+        FROM lesson
+        LEFT JOIN room ON lesson.room_idroom = room.idroom
+        LEFT JOIN trainer_has_lesson ON lesson.idlesson = trainer_has_lesson.lesson_idlesson
+        LEFT JOIN user_has_lesson ON lesson.idlesson = user_has_lesson.lesson_idlesson
+        LEFT JOIN user ON trainer_has_lesson.user_iduser = user.iduser
+        LEFT JOIN zone ON room.zone_idzone = zone.idzone
+        WHERE date >= ${date} AND date <= date_add(${date}, interval 5 day)
+        GROUP BY lesson.idlesson;
     `;
     return db.execute(sql)
+  }
+
+  static async saveUserToLesson(idlesson, iduser) {
+    let sql = `
+        INSERT INTO user_has_lesson (
+          user_iduser,
+          lesson_idlesson
+        ) VALUES (
+          ${iduser},
+          ${idlesson}
+        )
+    `;
+    return db.execute(sql);
+  }
+
+  static async findLessonById(idlesson) {
+    let sql = `
+        SELECT * FROM lesson WHERE idlesson = ${idlesson};
+    `;
+    return db.execute(sql);
+  }
+
+  static async deleteUserFromLesson(idlesson, iduser) {
+    let sql = `
+        DELETE FROM user_has_lesson WHERE user_iduser = ${iduser} AND lesson_idlesson = ${idlesson};
+    `;
+    return db.execute(sql);
   }
 }
 

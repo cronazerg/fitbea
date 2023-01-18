@@ -32,9 +32,9 @@ export const useLessonStore = defineStore('lesson', () => {
     }
   }
 
-  const getLessonByDate = async (date) => {
+  const getLessonByDate = async (date, iduser) => {
     try {
-      await fetch(`http://localhost:8000/lessons/'${date}'`, {
+      await fetch(`http://localhost:8000/lessons/'${date}'/${iduser}`, {
         method: 'get',
         headers: {
           'Content-Type': 'application/json'
@@ -104,13 +104,60 @@ export const useLessonStore = defineStore('lesson', () => {
           room_idroom: room_idroom,
           iduser: trainer
         })
-      }).then(async () => {
-        await router.push({name: "users"});
+      }).then((response) => {
+        if (response.status === 201) {
+          toasterAlert.success('Lekcja została utworzona');
+          router.push({name: "addLesson"});
+        } else {
+          toasterAlert.error('Napotkano niespotykany błąd');
+        }
       })
     } catch (error) {
       throw new Error(error);
     }
   }
 
-  return {getLessons, createLesson, lessons, getAllRooms, rooms, getAllTrainers, trainers, getLessonByDate, lessonsByDate}
+  const singUpToLesson = async (iduser, idlesson) => {
+    try {
+      await fetch(`http://localhost:8000/lessons/singIn/${idlesson}/${iduser}`, {
+        method: 'get',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then( async (response) => {
+        if (response.status === 200) {
+          toasterAlert.success('Zostałeś zapisany na lekcję');
+          await router.push({name: "calendar"});
+        } else {
+          toasterAlert.error('Napotkano niespotykany błąd');
+          await router.push({name: "calendar"});
+        }
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  const singOffFromLesson = async (iduser, idlesson) => {
+    try {
+      await fetch(`http://localhost:8000/lessons/singOut/${idlesson}/${iduser}`, {
+        method: 'delete',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then( async (response) => {
+        if (response.status === 200) {
+          toasterAlert.success('Zostałeś wypisany z lekcji');
+          await router.push({name: "calendar"});
+        } else {
+          toasterAlert.error('Napotkano niespotykany błąd');
+          await router.push({name: "calendar"});
+        }
+      });
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  return {getLessons, createLesson, lessons, getAllRooms, rooms, getAllTrainers, trainers, getLessonByDate, lessonsByDate, singUpToLesson, singOffFromLesson}
 });

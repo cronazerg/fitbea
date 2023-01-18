@@ -71,10 +71,35 @@ exports.getAllTrainers = async (req, res, next) => {
 
 exports.getLessonsByDate = async (req, res, next) => {
   const date = req.params.date;
+  const iduser = req.params.iduser;
   let lessons;
   try {
-    [lessons, _] = await Lesson.getLessonsByDate(date);
+    [lessons, _] = await Lesson.getLessonsByDate(date, iduser);
     res.status(200).json({count: lessons.length, lessons});
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+}
+
+exports.singOnLesson = async (req, res, next) => {
+  const iduser = req.params.iduser;
+  const idlesson = req.params.idlesson;
+  try {
+    let [_] = await Lesson.saveUserToLesson(idlesson, iduser);
+    res.status(200).json({message: 'User signed on lesson'});
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+}
+
+exports.singOffLesson = async (req, res, next) => {
+  const iduser = req.params.iduser;
+  const idlesson = req.params.idlesson;
+  try {
+    let [_] = await Lesson.deleteUserFromLesson(idlesson, iduser);
+    res.status(200).json({message: 'User signed off lesson'});
   } catch (error) {
     console.log(error);
     next(error);

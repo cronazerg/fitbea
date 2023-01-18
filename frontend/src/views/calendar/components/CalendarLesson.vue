@@ -1,5 +1,5 @@
 <script>
-import {useUsersStore, useLessonStore} from '@/stores';
+import {useUsersStore, useLessonStore, useAuthStore} from '@/stores';
 
 export default {
   name: 'CalendarLesson',
@@ -13,40 +13,66 @@ export default {
   setup() {
     const usersStore = useUsersStore();
     const lessonStore = useLessonStore();
+    const authStore = useAuthStore();
 
     return {
       usersStore,
-      lessonStore
+      lessonStore,
+      authStore
     };
   },
 
   data () {
     return {
-      lessonData: {}
+      lessonData: {},
+      userid: null
     }
   },
 
   methods: {
+    onSubmit() {
+      this.lessonStore.singUpToLesson(this.idlesson, this.userid);
+    },
 
+    removeFrom() {
+      this.lessonStore.singOffFromLesson(this.idlesson, this.userid);
+    }
+  },
+
+  mounted() {
+    this.lessonData = this.lessonStore.lessonsByDate.find(lesson => lesson.idlesson === this.idlesson);
+    this.userid = this.authStore.userData.iduser;
   }
 }
 
 </script>
 
 <template>
-  <div class="event start-13 end-16 securities">
-    <p class="title">Securities Regulation</p>
-    <p class="time">{{idlesson}}</p>
+  <div :class="`event securities start-${lessonData.start_time} end-${lessonData.end_time}`">
+    <p class="title">{{lessonData.title}}  SALA: {{lessonData.room_number}}</p>
+    <p class="">{{lessonData.description}}</p>
+    <p class="time">{{lessonData.start_time}}:00 - {{lessonData.end_time}}:00</p>
+    <p class="">Wolne miejsca: {{lessonData.userCount}} / {{lessonData.size}}</p>
+    <p class="">Trener: {{lessonData.name}} {{lessonData.last_name}}</p>
+    <button v-if="!lessonData.alreadyOnLesson" @click=onSubmit() class="btn btn-primary">Zapisz się</button>
+    <button v-if="lessonData.alreadyOnLesson" @click=removeFrom() class="btn btn-primary">Wypisz się</button>
   </div>
 </template>
 
 <style lang="scss">
 .event {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
   border: 1px solid var(--eventBorderColor);
   border-radius: 5px;
   padding: 0.5rem;
   margin: 0 0.5rem;
   background: white;
+  p {
+    margin-bottom: 4px;
+  }
 }
 
 .start-9 {

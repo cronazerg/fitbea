@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2dc01532-1f02-472b-b579-488de8ac1c37" name="Changes" comment="calendar-first-commit">
+    <list default="true" id="2dc01532-1f02-472b-b579-488de8ac1c37" name="Changes" comment="calendar-second-commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/controllers/lessonControllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/controllers/lessonControllers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/models/Lesson.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/Lesson.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/lessonRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/lessonRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/stores/lesson.store.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/lesson.store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/calendar/components/CalendarForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/calendar/components/CalendarForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/calendar/components/CalendarLesson.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/calendar/components/CalendarLesson.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/calendar/components/CalendarWeek.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/calendar/components/CalendarWeek.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +157,7 @@
       <workItem from="1673972864608" duration="4606000" />
       <workItem from="1674026360141" duration="24608000" />
       <workItem from="1674059709996" duration="1421000" />
-      <workItem from="1674069791273" duration="8410000" />
+      <workItem from="1674069791273" duration="8707000" />
     </task>
     <task id="LOCAL-00001" summary="add-more-config-for-project">
       <created>1668252690482</created>
@@ -277,7 +271,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674054256260</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="calendar-second-commit">
+      <created>1674082579145</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1674082579145</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -312,6 +313,7 @@
     <MESSAGE value="calendar-on-going" />
     <MESSAGE value="add-lesson-feature" />
     <MESSAGE value="calendar-first-commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="calendar-first-commit" />
+    <MESSAGE value="calendar-second-commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="calendar-second-commit" />
   </component>
 </project>

@@ -48,6 +48,14 @@ const routes = [
     meta: {
       title: "Kalendarz",
     },
+  },
+  {
+    path: "/addLesson",
+    name: "addLesson",
+    component: () => import("../views/addLesson/AddLesson.vue"),
+    meta: {
+      title: "Dodaj lekcję",
+    }
   }
 ];
 

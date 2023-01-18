@@ -2,9 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2dc01532-1f02-472b-b579-488de8ac1c37" name="Changes" comment="calendar-on-going">
+      <change afterPath="$PROJECT_DIR$/frontend/src/router/lesson.routes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/stores/lesson.store.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/views/addLesson/AddLesson.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/views/addLesson/Layout.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/views/addLesson/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/calendar/components/CalendarForm.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/calendar/components/CalendarForm.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/calendar/components/CalendarLesson.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/calendar/components/CalendarLesson.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/controllers/lessonControllers.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/controllers/lessonControllers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/models/Lesson.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/Lesson.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/lessonRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/lessonRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Nav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Nav.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/stores/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/stores/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/views/calendar/components/CalendarWeek.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/calendar/components/CalendarWeek.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -15,8 +26,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Vue Single File Component" />
         <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
       </list>
     </option>
   </component>
@@ -157,6 +168,7 @@
       <workItem from="1673894629328" duration="12322000" />
       <workItem from="1673939761318" duration="24095000" />
       <workItem from="1673972864608" duration="4606000" />
+      <workItem from="1674026360141" duration="16008000" />
     </task>
     <task id="LOCAL-00001" summary="add-more-config-for-project">
       <created>1668252690482</created>

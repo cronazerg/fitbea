@@ -62,10 +62,6 @@ export default {
             <p class="date-day">Poniedziałek</p>
           </div>
           <div class="events">
-<!--            <div class="event start-15 end-21 securities">-->
-<!--              <p class="title">Securities Regulation</p>-->
-<!--              <p class="time">2 PM - 5 PM</p>-->
-<!--            </div>-->
             <CalendarLesson/>
           </div>
         </div>
@@ -75,14 +71,7 @@ export default {
             <p class="date-day">Wtorek</p>
           </div>
           <div class="events">
-            <div class="event start-10 end-12 corp-fi">
-              <p class="title">Corporate Finance</p>
-              <p class="time">10 AM - 12 PM</p>
-            </div>
-            <div class="event start-10 end-13 ent-law">
-              <p class="title">Entertainment Law</p>
-              <p class="time">1PM - 4PM</p>
-            </div>
+            <CalendarLesson/>
           </div>
         </div>
         <div class="day wed">
@@ -91,14 +80,7 @@ export default {
             <p class="date-day">Środa</p>
           </div>
           <div class="events">
-            <div class="event start-12 end-15 writing">
-              <p class="title">Writing Seminar</p>
-              <p class="time">11 AM - 12 PM</p>
-            </div>
-            <div class="event start-10 end-12 securities">
-              <p class="title">Securities Regulation</p>
-              <p class="time">2 PM - 5 PM</p>
-            </div>
+            <CalendarLesson/>
           </div>
         </div>
         <div class="day thurs">
@@ -107,14 +89,7 @@ export default {
             <p class="date-day">Czwartek</p>
           </div>
           <div class="events">
-            <div class="event start-10 end-13 corp-fi">
-              <p class="title">Corporate Finance</p>
-              <p class="time">10 AM - 12 PM</p>
-            </div>
-            <div class="event start-15 end-18 ent-law">
-              <p class="title">Entertainment Law</p>
-              <p class="time">1PM - 4PM</p>
-            </div>
+            <CalendarLesson/>
           </div>
         </div>
         <div class="day fri">

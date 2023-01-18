@@ -8,6 +8,7 @@ const authStore = useAuthStore();
         <div class="navbar-nav">
             <router-link to="/" class="nav-item nav-link">Strona główna</router-link>
             <router-link v-if="authStore.userData?.role_idrole === 1" to="/users" class="nav-item nav-link">Użytkownicy</router-link>
+            <router-link v-if="authStore.userData?.role_idrole === 1" to="/addLesson" class="nav-item nav-link">Dodaj Lekcję</router-link>
             <router-link to="/calendar" class="nav-item nav-link">Kalendarz</router-link>
             <button @click="authStore.logout()" class="btn btn-link nav-item nav-link">Wyloguj</button>
         </div>

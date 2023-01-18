@@ -12,36 +12,26 @@ export default {
     },
     setup() {
         const usersStore = useUsersStore();
-        // const router = useRouter();
-
-        // const getLessons = async () => {
-        //     try {
-        //         await usersStore.getLessons();
-        //     } catch (e) {
-        //         console.log(e);
-        //     }
-        // };
-
-        // onMounted(() => {
-        //     if (!authStore.user) {
-        //         router.push('/login');
-        //     } else {
-        //         getLessons();
-        //     }
-        // });
 
         return {
             usersStore
         };
-    }
+    },
+
+    data() {
+        return {
+        }
+    },
+
+    methods: {
+
+    },
 }
 
 </script>
 
 <template>
   <div class="p-4">
-    <h1>Zapisz się na zajęcia</h1>
-
     <CalendarForm />
     <CalendarWeek />
   </div>

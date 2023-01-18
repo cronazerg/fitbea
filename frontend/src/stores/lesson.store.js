@@ -11,6 +11,7 @@ export const useLessonStore = defineStore('lesson', () => {
   const lessons = ref([]);
   const rooms = ref([]);
   const trainers = ref([]);
+  const lessonsByDate = ref([]);
 
   const getLessons = async () => {
     try {
@@ -24,6 +25,25 @@ export const useLessonStore = defineStore('lesson', () => {
         .then((response) => response.json())
         .then((data) => {
           lessons.value = data.lessons;
+        })
+
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  const getLessonByDate = async (date) => {
+    try {
+      await fetch(`http://localhost:8000/lessons/'${date}'`, {
+        method: 'get',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        // wait for the response
+        .then((response) => response.json())
+        .then((data) => {
+          lessonsByDate.value = data.lessons;
         })
 
     } catch (error) {
@@ -92,5 +112,5 @@ export const useLessonStore = defineStore('lesson', () => {
     }
   }
 
-  return {getLessons, createLesson, lessons, getAllRooms, rooms, getAllTrainers, trainers}
+  return {getLessons, createLesson, lessons, getAllRooms, rooms, getAllTrainers, trainers, getLessonByDate, lessonsByDate}
 });

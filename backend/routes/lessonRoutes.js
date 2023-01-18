@@ -12,4 +12,7 @@ router.route('/rooms')
 router.route('/trainers')
   .get(lessonControllers.getAllTrainers);
 
+router.route('/:date')
+  .get(lessonControllers.getLessonsByDate);
+
 module.exports = router;

@@ -1,6 +1,7 @@
 <script>
-import {useUsersStore} from '@/stores';
+import {useLessonStore, useUsersStore} from '@/stores';
 import CalendarLesson from './CalendarLesson.vue';
+import moment from 'moment';
 
 export default {
   name: 'CalendarWeek',
@@ -9,27 +10,37 @@ export default {
   },
   setup() {
     const usersStore = useUsersStore();
-    // const router = useRouter();
-
-    // const getLessons = async () => {
-    //     try {
-    //         await usersStore.getLessons();
-    //     } catch (e) {
-    //         console.log(e);
-    //     }
-    // };
-
-    // onMounted(() => {
-    //     if (!authStore.user) {
-    //         router.push('/login');
-    //     } else {
-    //         getLessons();
-    //     }
-    // });
+    const lessonStore = useLessonStore()
 
     return {
-      usersStore
+      usersStore,
+      lessonStore
     };
+  },
+
+  data() {
+    return {
+      dayDates: [
+        moment().format("YYYY-MM-DD"),
+        moment().add(1, 'days').format("YYYY-MM-DD"),
+        moment().add(2, 'days').format("YYYY-MM-DD"),
+        moment().add(3, 'days').format("YYYY-MM-DD"),
+        moment().add(4, 'days').format("YYYY-MM-DD"),
+      ],
+      dayNames: [
+        moment().format("dddd"),
+        moment().add(1, 'days').format("dddd"),
+        moment().add(2, 'days').format("dddd"),
+        moment().add(3, 'days').format("dddd"),
+        moment().add(4, 'days').format("dddd"),
+      ],
+    }
+  },
+
+  methods: {
+    getLessonsFromOneDay(day) {
+      return this.lessonStore.lessonsByDate.filter(lesson => moment(lesson.date).isSame(moment(day)))
+    }
   }
 }
 
@@ -38,7 +49,6 @@ export default {
 
 <template>
   <div>
-    <h1>Calendar Week</h1>
     <div class="calendar">
       <div class="timeline">
         <div class="spacer"></div>
@@ -58,46 +68,62 @@ export default {
       <div class="days">
         <div class="day mon">
           <div class="date">
-            <p class="date-num">9</p>
-            <p class="date-day">Poniedziałek</p>
+            <p class="date-num">{{this.dayDates[0]}}</p>
+            <p class="date-day">{{this.dayNames[0]}}</p>
           </div>
           <div class="events">
-            <CalendarLesson/>
+            <CalendarLesson
+              v-for="lesson in getLessonsFromOneDay(this.dayDates[0])"
+              :idlesson="lesson.idlesson"
+            />
           </div>
         </div>
         <div class="day tues">
           <div class="date">
-            <p class="date-num">12</p>
-            <p class="date-day">Wtorek</p>
+            <p class="date-num">{{this.dayDates[1]}}</p>
+            <p class="date-day">{{this.dayNames[1]}}</p>
           </div>
           <div class="events">
-            <CalendarLesson/>
+            <CalendarLesson
+              v-for="lesson in this.getLessonsFromOneDay(this.dayDates[1])"
+              :idlesson="lesson.idlesson"
+            />
           </div>
         </div>
         <div class="day wed">
           <div class="date">
-            <p class="date-num">11</p>
-            <p class="date-day">Środa</p>
+            <p class="date-num">{{this.dayDates[2]}}</p>
+            <p class="date-day">{{this.dayNames[2]}}</p>
           </div>
           <div class="events">
-            <CalendarLesson/>
+            <CalendarLesson
+                v-for="lesson in this.getLessonsFromOneDay(this.dayDates[2])"
+                :idlesson="lesson.idlesson"
+            />
           </div>
         </div>
         <div class="day thurs">
           <div class="date">
-            <p class="date-num">12</p>
-            <p class="date-day">Czwartek</p>
+            <p class="date-num">{{this.dayDates[3]}}</p>
+            <p class="date-day">{{this.dayNames[3]}}</p>
           </div>
           <div class="events">
-            <CalendarLesson/>
+            <CalendarLesson
+                v-for="lesson in this.getLessonsFromOneDay(this.dayDates[3])"
+                :idlesson="lesson.idlesson"
+            />
           </div>
         </div>
         <div class="day fri">
           <div class="date">
-            <p class="date-num">13</p>
-            <p class="date-day">Piątek</p>
+            <p class="date-num">{{this.dayDates[4]}}</p>
+            <p class="date-day">{{this.dayNames[4]}}</p>
           </div>
           <div class="events">
+            <CalendarLesson
+                v-for="lesson in this.getLessonsFromOneDay(this.dayDates[4])"
+                :idlesson="lesson.idlesson"
+            />
           </div>
         </div>
       </div>
@@ -191,7 +217,8 @@ body {
 
 .date-day {
   display: inline;
-  font-size: 3rem;
   font-weight: 100;
+  font-size: 2rem;
+  line-height: 75px;
 }
 </style>

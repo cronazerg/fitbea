@@ -68,3 +68,15 @@ exports.getAllTrainers = async (req, res, next) => {
     next(error);
   }
 }
+
+exports.getLessonsByDate = async (req, res, next) => {
+  const date = req.params.date;
+  let lessons;
+  try {
+    [lessons, _] = await Lesson.getLessonsByDate(date);
+    res.status(200).json({count: lessons.length, lessons});
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+}

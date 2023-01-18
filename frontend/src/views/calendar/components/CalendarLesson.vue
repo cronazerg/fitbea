@@ -1,24 +1,42 @@
 <script>
-import {useUsersStore} from '@/stores';
+import {useUsersStore, useLessonStore} from '@/stores';
 
 export default {
   name: 'CalendarLesson',
+
+  props: {
+    idlesson: {
+      required: false
+    },
+  },
+
   setup() {
     const usersStore = useUsersStore();
+    const lessonStore = useLessonStore();
 
     return {
-      usersStore
+      usersStore,
+      lessonStore
     };
+  },
+
+  data () {
+    return {
+      lessonData: {}
+    }
+  },
+
+  methods: {
+
   }
 }
-
 
 </script>
 
 <template>
-  <div class="event start-15 end-21 securities">
+  <div class="event start-13 end-16 securities">
     <p class="title">Securities Regulation</p>
-    <p class="time">2 PM - 5 PM</p>
+    <p class="time">{{idlesson}}</p>
   </div>
 </template>
 

@@ -1,7 +1,34 @@
-<script setup>
-import {useAuthStore} from '@/stores';
+<script>
+import {useUsersStore, useLessonStore} from '@/stores';
+import moment from 'moment';
 
-const authStore = useAuthStore();
+export default {
+  name: 'CalendarLesson',
+  setup() {
+    const usersStore = useUsersStore();
+    const lessonStore = useLessonStore()
+
+    return {
+      usersStore,
+      lessonStore
+    };
+  },
+
+  data() {
+    return {
+      date : moment().format("YYYY-MM-DD"),
+    }
+  },
+
+  methods: {
+
+  },
+
+  created() {
+    this.lessonStore.getLessonByDate(`${this.date}`);
+    this.lessonStore.getAllRooms();
+  }
+}
 </script>
 
 <template>
@@ -18,18 +45,8 @@ const authStore = useAuthStore();
         </select>
       </div>
       <div class="form-group">
-        <label>Trener</label>
-        <select required class="form-control" name="localization" id="localization">
-          <option
-              :value="Katowice"
-          > Katowice
-          </option
-          >
-        </select>
-      </div>
-      <div class="form-group">
         <label>Strefa</label>
-        <select required class="form-control" name="localization" id="localization">
+        <select required class="form-control" name="zone" id="zone">
           <option
               :value="Katowice"
           > Katowice
@@ -39,13 +56,19 @@ const authStore = useAuthStore();
       </div>
       <div class="form-group">
         <label>Sala</label>
-        <select required class="form-control" name="localization" id="localization">
+        <select required class="form-control" name="room" id="room">
           <option
               :value="Katowice"
           > Katowice
           </option
           >
         </select>
+      </div>
+      <div class="form-group">
+        <button class="submitCalendar btn btn-primary" :disabled="isSubmitting">
+          <span v-show="isSubmitting" class="spinner-border spinner-border-sm mr-1"></span>
+          Szukaj
+        </button>
       </div>
     </Form>
   </div>
@@ -93,6 +116,11 @@ const authStore = useAuthStore();
         border-color: #333;
       }
     }
+  }
+}
+.form-group {
+  .submitCalendar {
+    padding: 10px 100px;
   }
 }
 </style>

@@ -79,6 +79,15 @@ class Lesson {
     `;
     return db.execute(sql);
   }
+
+  static async getLessonsByDate(date) {
+    let sql = `
+        SELECT * FROM lesson 
+        WHERE date >= ${date} AND date <= date_add(${date} , interval 5 day)
+        ORDER BY date;
+    `;
+    return db.execute(sql)
+  }
 }
 
 module.exports = Lesson;

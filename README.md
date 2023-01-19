@@ -16,3 +16,7 @@ Fitbea is a project that aims to help people to keep track of their fitness goal
 - [Git](https://git-scm.com/)
 - [Nginx](https://www.nginx.com/)
 - [Certbot](https://certbot.eff.org/)
+
+![alt text](Screenshot_1.jpg)
+![alt text](Screenshot_2.jpg)
+![alt text](Screenshot_3.jpg)

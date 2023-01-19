@@ -41,6 +41,8 @@ export default {
   mounted() {
     this.cities = [...new Set(this.lessonStore.dataForSort && this.lessonStore.dataForSort.map(item => item.city))];
     this.zones = [...new Set(this.lessonStore.dataForSort && this.lessonStore.dataForSort.map(item => item.description))];
+    this.lessonStore.cityToFilter = this.cities[0];
+    this.lessonStore.zoneToFilter = this.zones[0];
   },
 }
 </script>
@@ -51,7 +53,6 @@ export default {
       <div class="form-group">
         <label>Lokalizacja</label>
         <select required class="form-control" name="localization" id="localization" @change="event => this.lessonStore.cityToFilter = event.target.value">
-          <option :value="true">Wszystkie</option>
           <option
             v-for="city in cities"
             :value="city"
@@ -62,7 +63,6 @@ export default {
       <div class="form-group">
         <label>Strefa</label>
         <select required class="form-control" name="zone" id="zone" @change="event => this.lessonStore.zoneToFilter = event.target.value">
-          <option :value="true">Wszystkie</option>
           <option
               v-for="zone in zones"
               :value="zone"

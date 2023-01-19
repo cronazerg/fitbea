@@ -12,6 +12,11 @@ export const useLessonStore = defineStore('lesson', () => {
   const rooms = ref([]);
   const trainers = ref([]);
   const lessonsByDate = ref([]);
+  const dataForSort = ref([]);
+
+  let cityToFilter = ref('');
+  let zoneToFilter = ref('');
+
 
   const getLessons = async () => {
     try {
@@ -159,5 +164,5 @@ export const useLessonStore = defineStore('lesson', () => {
     }
   }
 
-  return {getLessons, createLesson, lessons, getAllRooms, rooms, getAllTrainers, trainers, getLessonByDate, lessonsByDate, singUpToLesson, singOffFromLesson}
+  return {getLessons, createLesson, lessons, getAllRooms, rooms, getAllTrainers, trainers, getLessonByDate, lessonsByDate, singUpToLesson, singOffFromLesson, dataForSort, cityToFilter, zoneToFilter}
 });

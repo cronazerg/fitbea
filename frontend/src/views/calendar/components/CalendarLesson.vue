@@ -39,6 +39,7 @@ export default {
     }
   },
 
+
   mounted() {
     this.lessonData = this.lessonStore.lessonsByDate.find(lesson => lesson.idlesson === this.idlesson);
     this.userid = this.authStore.userData.iduser;
@@ -48,7 +49,9 @@ export default {
 </script>
 
 <template>
-  <div :class="`event securities start-${lessonData.start_time} end-${lessonData.end_time}`">
+  <div v-show="((lessonData.city === (this.lessonStore.cityToFilter)) || (this.lessonStore.cityToFilter == 'true')) &&
+              ((lessonData.zoneDescription === (this.lessonStore.zoneToFilter)) || (this.lessonStore.zoneToFilter == 'true'))"
+       :class="`event securities start-${lessonData.start_time} end-${lessonData.end_time}`">
     <p class="title">{{lessonData.title}}  SALA: {{lessonData.room_number}}</p>
     <p class="">{{lessonData.description}}</p>
     <p class="time">{{lessonData.start_time}}:00 - {{lessonData.end_time}}:00</p>

@@ -1,31 +1,24 @@
 <script>
 
-import {useUsersStore} from '@/stores';
+import {useUsersStore, useLessonStore} from '@/stores';
 import CalendarForm from './components/CalendarForm.vue';
 import CalendarWeek from './components/CalendarWeek.vue';
 
 export default {
-    name: 'Calendar',
-    components: {
-        CalendarForm,
-        CalendarWeek
-    },
-    setup() {
-        const usersStore = useUsersStore();
+  name: 'Calendar',
+  components: {
+      CalendarForm,
+      CalendarWeek
+  },
+  setup() {
+      const usersStore = useUsersStore();
+      const lessonStore = useLessonStore();
 
-        return {
-            usersStore
-        };
-    },
-
-    data() {
-        return {
-        }
-    },
-
-    methods: {
-
-    },
+      return {
+          usersStore,
+          lessonStore
+      };
+  }
 }
 
 </script>

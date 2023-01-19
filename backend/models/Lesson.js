@@ -42,7 +42,10 @@ class Lesson {
 
   static findAll() {
     let sql = `
-        SELECT * FROM lesson;
+        SELECT * , room.name as 'roomName' FROM lesson
+        LEFT JOIN room ON lesson.room_idroom = room.idroom
+        LEFT JOIN zone ON room.zone_idzone = zone.idzone
+        LEFT JOIN location ON zone.location_idlocation = location.idlocation
     `;
     return db.execute(sql);
   }
@@ -82,7 +85,7 @@ class Lesson {
 
   static async getLessonsByDate(date, iduser) {
     let sql = `
-        SELECT lesson.*, room.room_number, room.size, trainer_has_lesson.user_iduser, user.name, user.last_name, room.zone_idzone as 'idzone', zone.location_idlocation as 'idlocation',
+        SELECT lesson.*, room.room_number, room.size, trainer_has_lesson.user_iduser, user.name, user.last_name, room.zone_idzone as 'idzone', zone.location_idlocation as 'idlocation', zone.description as 'zoneDescription', location.city,
         CASE
           WHEN user_has_lesson.user_iduser IS NOT NULL THEN count(iduser) 
             ELSE 0 
@@ -97,6 +100,7 @@ class Lesson {
         LEFT JOIN user_has_lesson ON lesson.idlesson = user_has_lesson.lesson_idlesson
         LEFT JOIN user ON trainer_has_lesson.user_iduser = user.iduser
         LEFT JOIN zone ON room.zone_idzone = zone.idzone
+        LEFT JOIN location ON zone.location_idlocation = location.idlocation
         WHERE date >= ${date} AND date <= date_add(${date}, interval 5 day)
         GROUP BY lesson.idlesson;
     `;

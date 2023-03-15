@@ -5,9 +5,9 @@ const { cookieJwtAuth } = require('../middleware/cookieJwtAuth');
 
 // route GET && POST - /users
 //add cookieJwtAuth to protect route
-router.route('/')
+router.route('/:limit/:param')
     .get(cookieJwtAuth, userControllers.getAllUsers)
-    .post(userControllers.createUser);
+    .post(cookieJwtAuth, userControllers.createUser);
 
 router.route('/login')
     .post(userControllers.loginUser);

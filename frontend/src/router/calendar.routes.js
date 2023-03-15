@@ -4,6 +4,6 @@ export default {
   path: '/calendar',
   component: Layout,
   children: [
-    {path: '', component: Calendar}
+    {path: '', component: Calendar},
   ]
 };

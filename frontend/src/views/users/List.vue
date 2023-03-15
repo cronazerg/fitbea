@@ -26,34 +26,15 @@ export default {
       lastName: '',
       email: '',
       phone: '',
-      edit_by: authStore.userData.iduser
+      edit_by: authStore.userData.iduser,
+      limits: [10, 20, 50, 100],
+      limit: 10,
+      offset: 0,
+      page: 1
     }
   },
 
   methods: {
-    writeConsole(data) {
-      console.log(data);
-    },
-
-    async onEdit(id) {
-      try {
-        await this.userStore.updateUserDataById(id, {
-          name: this.name,
-          lastName: this.lastName,
-          email: this.email,
-          phone: this.phone,
-          edit_by: this.edit_by,
-        });
-      } catch (error) {
-        console.log(error);
-        this.error = error;
-        this.name = "";
-        this.lastName = "";
-        this.email = "";
-        this.phone = "";
-      }
-    },
-
     saveUser(user) {
       this.userStore.saveUser({
         id: user.iduser,
@@ -64,6 +45,33 @@ export default {
         phone: user.phone,
         edit_by: this.edit_by,
       });
+    },
+
+    reload() {
+      this.page = 1;
+      this.userStore.getAll(this.limit, this.offset);
+    },
+
+    countOffset() {
+      return (this.page - 1) * this.limit;
+    },
+
+    nextPage() {
+      this.page++;
+      this.userStore.getAll(this.limit, this.countOffset());
+    },
+
+    previousPage() {
+      this.page--;
+      this.userStore.getAll(this.limit, this.countOffset());
+    },
+
+    isDisabledBack() {
+      return this.page === 1;
+    },
+
+    isDisabledNext() {
+      return this.userStore.usersData?.length < this.limit;
     }
   },
 
@@ -78,6 +86,13 @@ export default {
 <template>
   <div class="usersView" v-if="authStore.userData.role_idrole === 1">
     <h1 class="mainHeader">Użytkownicy</h1>
+    <div class="pagination">
+      <select class="limit" @change="reload()" v-model="this.limit">
+        <option v-for="limit in limits" :key="limit" :value="limit">{{ limit }}</option>
+      </select>
+      <button class="pageNext" @click="countOffset(), nextPage()" :disabled="isDisabledNext()">Następna</button>
+      <button class="pagePrev" @click="previousPage()" :disabled="isDisabledBack()">Poprzednia</button>
+    </div>
     <table id="users">
       <thead>
       <tr>
@@ -172,8 +187,48 @@ export default {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: #4b5897;
-  color: white;
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.limit {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  margin-right: 50px;
+  border: 2px solid black;
+}
+
+.pageNext {
+  padding: 8px 16px;
+  border-radius: 4px;
+  margin-right: 50px;
+  border: 2px solid black;
+}
+
+.pagePrev {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 2px solid black;
+}
+
+.pagePrev:disabled {
+  background-color: #f2f2f2;
+  color: #fff;
+  border: 2px solid #fff;
+  cursor: not-allowed;
+}
+
+.pageNext:disabled {
+  background-color: #f2f2f2;
+  color: #fff;
+  border: 2px solid #fff;
+  cursor: not-allowed;
 }
 
 </style>

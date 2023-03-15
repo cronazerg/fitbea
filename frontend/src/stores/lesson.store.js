@@ -1,22 +1,25 @@
 import {defineStore} from 'pinia';
 import {ref} from "vue";
+import moment from "moment";
 
 import router from "../router";
-import {useAuthStore} from '@/stores';
 import {createToaster} from "@meforma/vue-toaster";
+import { useAuthStore } from '@/stores';
 
 const toasterAlert = createToaster({ /* options */});
 
 export const useLessonStore = defineStore('lesson', () => {
-  const lessons = ref([]);
-  const rooms = ref([]);
-  const trainers = ref([]);
-  const lessonsByDate = ref([]);
-  const dataForSort = ref([]);
+  let lessons = ref([]);
+  let rooms = ref([]);
+  let trainers = ref([]);
+  let lessonsByDate = ref([]);
 
   let cityToFilter = ref('');
   let zoneToFilter = ref('');
 
+  const todayDate = moment().format('YYYY-MM-DD');
+
+  const authStore = useAuthStore();
 
   const getLessons = async () => {
     try {
@@ -129,13 +132,13 @@ export const useLessonStore = defineStore('lesson', () => {
         headers: {
           'Content-Type': 'application/json'
         }
-      }).then( async (response) => {
+      }).then((response) => {
         if (response.status === 200) {
           toasterAlert.success('Zostałeś zapisany na lekcję');
-          await router.push({name: "calendar"});
+          getLessons();
+          getLessonByDate(todayDate, authStore?.userData?.iduser)
         } else {
           toasterAlert.error('Napotkano niespotykany błąd');
-          await router.push({name: "calendar"});
         }
       });
     } catch (error) {
@@ -150,13 +153,13 @@ export const useLessonStore = defineStore('lesson', () => {
         headers: {
           'Content-Type': 'application/json'
         }
-      }).then( async (response) => {
+      }).then((response) => {
         if (response.status === 200) {
           toasterAlert.success('Zostałeś wypisany z lekcji');
-          await router.push({name: "calendar"});
+          getLessons();
+          getLessonByDate(todayDate, authStore?.userData?.iduser)
         } else {
           toasterAlert.error('Napotkano niespotykany błąd');
-          await router.push({name: "calendar"});
         }
       });
     } catch (error) {
@@ -164,5 +167,5 @@ export const useLessonStore = defineStore('lesson', () => {
     }
   }
 
-  return {getLessons, createLesson, lessons, getAllRooms, rooms, getAllTrainers, trainers, getLessonByDate, lessonsByDate, singUpToLesson, singOffFromLesson, dataForSort, cityToFilter, zoneToFilter}
+  return {getLessons, createLesson, lessons, getAllRooms, rooms, getAllTrainers, trainers, getLessonByDate, lessonsByDate, singUpToLesson, singOffFromLesson, cityToFilter, zoneToFilter}
 });

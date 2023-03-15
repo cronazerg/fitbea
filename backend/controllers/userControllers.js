@@ -6,7 +6,10 @@ const jwt = require('jsonwebtoken');
 exports.getAllUsers = async (req, res, next) => {
   let users;
   try {
-    [users, _] = await User.findAll();
+    let limit = req.params.limit;
+    let param = req.params.param;
+
+    [users, _] = await User.findAll(limit, param);
     res.status(200).json({ count: users.length, users });
   } catch (error) {
     console.log(error);

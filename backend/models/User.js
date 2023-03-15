@@ -81,9 +81,11 @@ class User {
     return db.execute(sql);
   }
 
-  static findAll() {
+  static findAll(limit, param) {
+    console.log(limit, param);
+
     let sql = `
-            SELECT * FROM allusers;
+            SELECT * FROM allusers LIMIT ${limit} OFFSET ${param};
         `;
 
     return db.execute(sql);

@@ -9,11 +9,11 @@ export default {
     CalendarLesson,
   },
   setup() {
-    const usersStore = useUsersStore();
+    const userStore = useUsersStore();
     const lessonStore = useLessonStore()
 
     return {
-      usersStore,
+      userStore,
       lessonStore
     };
   },
@@ -41,7 +41,13 @@ export default {
     getLessonsFromOneDay(day) {
       return this.lessonStore.lessonsByDate.filter(lesson => moment(lesson.date).isSame(moment(day)))
     }
-  }
+  },
+
+  watch: {
+    date: function (val) {
+      this.lessonStore.getLessonByDate(val, this.userStore.userData.iduser);
+    }
+  },
 }
 
 

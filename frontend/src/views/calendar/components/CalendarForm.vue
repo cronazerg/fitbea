@@ -28,10 +28,7 @@ export default {
   },
 
   created() {
-    this.lessonStore.getAllRooms();
-    this.lessonStore.getLessons();
-    this.lessonStore.dataForSort = this.lessonStore.lessons;
-    this.lessonStore.getLessonByDate(`${this.date}`, this.userStore.userData.iduser);
+
   },
 
   methods: {
@@ -39,11 +36,20 @@ export default {
   },
 
   mounted() {
-    this.cities = [...new Set(this.lessonStore.dataForSort && this.lessonStore.dataForSort.map(item => item.city))];
-    this.zones = [...new Set(this.lessonStore.dataForSort && this.lessonStore.dataForSort.map(item => item.description))];
+    this.cities = [...new Set(this.lessonStore.lessons && this.lessonStore.lessons.map(item => item.city))];
+    this.zones = [...new Set(this.lessonStore.lessons && this.lessonStore.lessons.map(item => item.description))];
     this.lessonStore.cityToFilter = this.cities[0];
     this.lessonStore.zoneToFilter = this.zones[0];
   },
+
+  watch: {
+    cityToFilter: function (val) {
+      this.lessonStore.cityToFilter = val;
+    },
+    zoneToFilter: function (val) {
+      this.lessonStore.zoneToFilter = val;
+    }
+  }
 }
 </script>
 

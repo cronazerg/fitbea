@@ -11,6 +11,7 @@ const toasterAlert = createToaster({ /* options */ });
 export const useUsersStore = defineStore('users', () => {
   const user = ref(null);
   const usersData = ref(null);
+  const usersDataLimit = ref(null);
   const userToEdit = ref(null);
 
   const authStore = useAuthStore();
@@ -32,9 +33,9 @@ export const useUsersStore = defineStore('users', () => {
     }
   }
 
-  const getAll = async () => {
+  const getAll = async (limit = 10, offset = 1) => {
     try {
-      await fetch('http://localhost:8000/users', {
+      await fetch(`http://localhost:8000/users/${limit}/${offset}`, {
         method: 'get',
         headers: {
           'Content-Type': 'application/json',
@@ -45,6 +46,7 @@ export const useUsersStore = defineStore('users', () => {
         .then((response) => response.json())
         .then((data) => {
           usersData.value = data.users;
+          usersDataLimit.value = data.count;
         })
 
     } catch (error) {
@@ -120,5 +122,5 @@ export const useUsersStore = defineStore('users', () => {
     }
   }
 
-  return {register, getAll, usersData, deleteUser, updateUserDataById, userToEdit, saveUser}
+  return {register, getAll, usersData, usersDataLimit, deleteUser, updateUserDataById, userToEdit, saveUser}
 });

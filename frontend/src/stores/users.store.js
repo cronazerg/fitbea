@@ -54,6 +54,44 @@ export const useUsersStore = defineStore('users', () => {
     }
   }
 
+  const getUserByName = async (name) => {
+    try {
+      await fetch(`http://localhost:8000/users/name/${name}`, {
+        method: 'get',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: authStore?.authToken
+        }
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          usersData.value = data.users;
+        })
+
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  const getUserById = async (id) => {
+    try {
+      await fetch(`http://localhost:8000/users/${id}`, {
+        method: 'get',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: authStore?.authToken
+        }
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          usersData.value = data.users;
+        })
+
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
   const saveUser = async ({id, role_idrole, name, lastName, email, phone}) => {
     userToEdit.value = {
       id: id,
@@ -70,7 +108,7 @@ export const useUsersStore = defineStore('users', () => {
     await router.push({name: "addEdit"})
   }
 
-  const updateUserDataById = async (id, {role, name, lastName, phone, email, edit_by}) => {
+  const updateUserDataById = async id => {
     try {
       await fetch(`http://localhost:8000/users/userData/${id}`, {
         method: 'put',
@@ -122,5 +160,5 @@ export const useUsersStore = defineStore('users', () => {
     }
   }
 
-  return {register, getAll, usersData, usersDataLimit, deleteUser, updateUserDataById, userToEdit, saveUser}
+  return {register, getAll, usersData, usersDataLimit, deleteUser, updateUserDataById, userToEdit, saveUser, getUserById, getUserByName}
 });

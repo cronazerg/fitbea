@@ -82,12 +82,12 @@ class User {
   }
 
   static findAll(limit, param) {
-    console.log(limit, param);
+    let sql = `SELECT * FROM allusers LIMIT ${limit} OFFSET ${param};`;
+    return db.execute(sql);
+  }
 
-    let sql = `
-            SELECT * FROM allusers LIMIT ${limit} OFFSET ${param};
-        `;
-
+  static findByName(name) {
+    let sql = `SELECT * FROM allusers WHERE last_name LIKE '${name}';`;
     return db.execute(sql);
   }
 

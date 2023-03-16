@@ -17,6 +17,29 @@ exports.getAllUsers = async (req, res, next) => {
   }
 };
 
+exports.getSingleUser = async (req, res, next) => {
+  try {
+    let userId = req.params.id;
+    let [users, _] = await User.findById(userId);
+    res.status(200).json({ count: users.length, users });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
+
+exports.getUsersByName = async (req, res, next) => {
+  try {
+    let name = req.params.name;
+
+    let [users, _] = await User.findByName(name);
+    res.status(200).json({ count: users.length, users });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
+
 exports.loginUser = async (req, res, next) => {
   try {
     let { email, password } = req.body;
@@ -173,17 +196,6 @@ exports.updateUserPhone = async (req, res, next) => {
     next(error);
   }
 }
-
-exports.getSingleUser = async (req, res, next) => {
-  try {
-    let userId = req.params.id;
-    let [user, _] = await User.findById(userId);
-    res.status(200).json({ user });
-  } catch (error) {
-    console.log(error);
-    next(error);
-  }
-};
 
 exports.deleteUser = (req, res, next) => {
   let user;

@@ -30,7 +30,9 @@ export default {
       limits: [10, 20, 50, 100],
       limit: 10,
       offset: 0,
-      page: 1
+      page: 1,
+      searchId: null,
+      searchName: ''
     }
   },
 
@@ -72,6 +74,14 @@ export default {
 
     isDisabledNext() {
       return this.userStore.usersData?.length < this.limit;
+    },
+
+    searchUser(searchId) {
+      this.userStore.getUserById(searchId);
+    },
+
+    searchUserByName(searchName) {
+      this.userStore.getUserByName(searchName);
     }
   },
 
@@ -90,8 +100,36 @@ export default {
       <select class="limit" @change="reload()" v-model="this.limit">
         <option v-for="limit in limits" :key="limit" :value="limit">{{ limit }}</option>
       </select>
-      <button class="pageNext" @click="countOffset(), nextPage()" :disabled="isDisabledNext()">Następna</button>
+
       <button class="pagePrev" @click="previousPage()" :disabled="isDisabledBack()">Poprzednia</button>
+      <button class="pageNext" @click="countOffset(), nextPage()" :disabled="isDisabledNext()">Następna</button>
+
+      <div class="page">
+        <span>Strona {{ page }}</span>
+      </div>
+
+      <label for="search">Szukaj po id</label>
+      <input class="searchInput" type="number" v-model="this.searchId">
+      <button
+        class="searchButton"
+        @click="this.searchUser(this.searchId)"
+      >
+        Szukaj
+      </button>
+
+      <label for="search">Szukaj po nazwisku</label>
+      <input class="searchInput" type="text" v-model="this.searchName">
+      <button
+          class="searchButton"
+          @click="this.searchUserByName(this.searchName)"
+      >
+        Szukaj
+      </button>
+
+      <button
+        class="addButton"
+        @click="this.reload()"
+      >Restart</button>
     </div>
     <table id="users">
       <thead>
@@ -200,21 +238,22 @@ export default {
   padding: 8px 16px;
   border: none;
   border-radius: 4px;
-  margin-right: 50px;
   border: 2px solid black;
+  margin-right: 50px;
 }
 
 .pageNext {
   padding: 8px 16px;
   border-radius: 4px;
-  margin-right: 50px;
   border: 2px solid black;
+  margin-right: 50px;
 }
 
 .pagePrev {
   padding: 8px 16px;
   border-radius: 4px;
   border: 2px solid black;
+  margin-right: 50px;
 }
 
 .pagePrev:disabled {
@@ -229,6 +268,52 @@ export default {
   color: #fff;
   border: 2px solid #fff;
   cursor: not-allowed;
+}
+
+.page {
+  margin-left: 50px;
+  font-size: 20px;
+  margin-right: 50px;
+}
+
+.searchInput {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 2px solid black;
+  margin-right: 50px;
+}
+
+.searchButton {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 2px solid black;
+  margin-right: 50px;
+}
+
+.addButton {
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 2px solid black;
+  margin-right: 50px;
+}
+
+.addButton:hover {
+  background-color: #f2f2f2;
+  color: #333;
+  border: 2px solid #333;
+  cursor: pointer;
+}
+
+.searchButton:hover {
+  background-color: #f2f2f2;
+  color: #333;
+  border: 2px solid #333;
+  cursor: pointer;
+}
+
+label {
+  margin-right: 50px;
+  font-size: 20px;
 }
 
 </style>

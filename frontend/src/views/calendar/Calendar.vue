@@ -1,8 +1,9 @@
 <script>
 
-import {useUsersStore, useLessonStore} from '@/stores';
+import {useLessonStore, useAuthStore} from '@/stores';
 import CalendarForm from './components/CalendarForm.vue';
 import CalendarWeek from './components/CalendarWeek.vue';
+import moment from 'moment';
 
 export default {
   name: 'Calendar',
@@ -11,14 +12,25 @@ export default {
       CalendarWeek
   },
   setup() {
-      const usersStore = useUsersStore();
       const lessonStore = useLessonStore();
+      const userStore = useAuthStore();
 
       return {
-          usersStore,
-          lessonStore
+          lessonStore,
+          userStore
       };
-  }
+  },
+
+  data() {
+      return {}
+  },
+
+
+  beforeCreate() {
+    this.lessonStore.getAllRooms();
+    this.lessonStore.getLessons();
+    this.lessonStore.getLessonByDate(`${moment().format("YYYY-MM-DD")}`, this.userStore.userData.iduser);
+  },
 }
 
 </script>

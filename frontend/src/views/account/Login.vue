@@ -41,7 +41,7 @@ export default {
     <div class="card m-3">
       <h4 class="card-header">Zaloguj się</h4>
       <div class="card-body">
-        <Form @submit.prevent="this.login()">
+        <Form class="login-form" @submit.prevent="this.login()">
           <div class="form-group">
             <label>Email</label>
             <input required name="email" type="text" class="form-control" :class="{ 'is-invalid': errors.email }" @input="event => this.email = event.target.value"/>
@@ -75,5 +75,11 @@ export default {
 
   .card {
     width: 500px;
+  }
+
+  .card-body {
+    .login-form {
+      width: 100%;
+    }
   }
 </style>

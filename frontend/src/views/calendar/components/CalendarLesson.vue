@@ -39,11 +39,10 @@ export default {
     }
   },
 
-
   mounted() {
     this.lessonData = this.lessonStore.lessonsByDate.find(lesson => lesson.idlesson === this.idlesson);
     this.userid = this.authStore.userData.iduser;
-  }
+  },
 }
 
 </script>
